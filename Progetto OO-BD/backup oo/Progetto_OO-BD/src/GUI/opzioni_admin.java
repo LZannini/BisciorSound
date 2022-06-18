@@ -106,11 +106,11 @@ public class opzioni_admin extends JFrame {
 		btnNewButton.setBounds(349, 114, 60, 21);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Lista Admin");
+		JButton btnNewButton_1 = new JButton("Lista Utenti");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lista_admin lista_admin = new lista_admin();
+				lista_utenti lista_admin = new lista_utenti();
 				lista_admin.setVisible(true);
 				dispose();
 			}

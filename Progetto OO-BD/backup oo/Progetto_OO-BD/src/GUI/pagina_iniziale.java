@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+
 public class pagina_iniziale extends JFrame{
 
 	JFrame start_frame;
