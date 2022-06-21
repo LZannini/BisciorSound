@@ -2,11 +2,11 @@ package ConfigurazioneDB;
 
 import java.sql.*;
 
-public class ConnessioneDB {
+public class ConnessioneDB { 
 	
 	public static Connection connetti() {
-        Connection conn = null;
-		
+        
+		Connection conn = null;
 	    String url = "jdbc:postgresql://localhost/LibreriaMusicale_db";
 	    String user = "postgres";
 	    String password = "universita10";

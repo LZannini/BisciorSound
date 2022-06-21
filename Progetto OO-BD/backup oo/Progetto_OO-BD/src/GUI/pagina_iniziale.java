@@ -18,6 +18,7 @@ public class pagina_iniziale extends JFrame{
 	JFrame start_frame;
 	private JTextField username_textField;
 	private JPasswordField password_textField;
+	public static String nomeLogin = " ";
 
 	/**
 	 * Launch the application.
@@ -75,11 +76,13 @@ public class pagina_iniziale extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane.showMessageDialog(null, "Login effettuato con successo!");
+				nomeLogin = username_textField.getText();
 				home_utente home = new home_utente();
 				home.setVisible(true);
 				start_frame.dispose();
 			}
 		});
+		
 		login_button.setBounds(98, 190, 209, 21);
 		start_frame.getContentPane().add(login_button);
 		
@@ -115,4 +118,9 @@ public class pagina_iniziale extends JFrame{
 		adminAccess_label.setBounds(199, 210, 122, 13);
 		start_frame.getContentPane().add(adminAccess_label);
 	}
+	
+	public static String getNomeLogin() {
+		return nomeLogin;
+	}
+	
 }
