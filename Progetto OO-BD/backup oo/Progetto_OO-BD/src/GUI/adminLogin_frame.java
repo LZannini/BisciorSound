@@ -17,8 +17,9 @@ import java.awt.event.MouseEvent;
 public class adminLogin_frame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField adminusername_field;
 	private JPasswordField textField_1;
+	public static String nomeLoginAdmin = " ";
 
 	/**
 	 * Launch the application.
@@ -49,10 +50,10 @@ public class adminLogin_frame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(126, 73, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		adminusername_field = new JTextField();
+		adminusername_field.setBounds(126, 73, 96, 19);
+		contentPane.add(adminusername_field);
+		adminusername_field.setColumns(10);
 		
 		textField_1 = new JPasswordField();
 		textField_1.setBounds(126, 133, 96, 19);
@@ -73,6 +74,7 @@ public class adminLogin_frame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane.showMessageDialog(null, "Admin Login effettuato con successo!");
 				dispose();
+				nomeLoginAdmin = adminusername_field.getText();
 				home_admin home_admin = new home_admin();
 				home_admin.setVisible(true);
 			}
@@ -91,5 +93,9 @@ public class adminLogin_frame extends JFrame {
 		});
 		back_button.setBounds(96, 207, 191, 21);
 		contentPane.add(back_button);
+	}
+
+	public static String getNomeLoginAdmin() {
+		return nomeLoginAdmin;
 	}
 }

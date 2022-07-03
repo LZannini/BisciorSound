@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -56,5 +58,17 @@ public class tracce_frame extends JFrame {
 		});
 		back_button.setBounds(10, 232, 85, 21);
 		contentPane.add(back_button);
+		
+		JList listaTracce = new JList();
+		listaTracce.setBounds(190, 235, 160, 197);
+		contentPane.add(listaTracce);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 414, 210);
+		contentPane.add(scrollPane);
+		
+		scrollPane.setViewportView(listaTracce);
+		
+		FunzioniDB.listaTracce.mostra_tracce(listaTracce);
 	}
 }

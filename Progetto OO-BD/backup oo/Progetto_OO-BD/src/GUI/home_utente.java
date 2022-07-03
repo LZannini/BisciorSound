@@ -99,8 +99,8 @@ public class home_utente extends JFrame {
 		
 		nomeLogin = pagina_iniziale.getNomeLogin();
 		JLabel label_saluto = new JLabel("Ciao, "+nomeLogin+"!");
-		label_saluto.setFont(new Font("Eras Bold ITC", Font.PLAIN, 14));
-		label_saluto.setBounds(210, 213, 216, 20);
+		label_saluto.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+		label_saluto.setBounds(264, 241, 170, 20);
 		contentPane.add(label_saluto);
 	}
 }

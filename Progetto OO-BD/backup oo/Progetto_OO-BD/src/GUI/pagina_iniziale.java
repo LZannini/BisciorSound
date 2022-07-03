@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import FunzioniDB.checkLogin;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -19,7 +22,8 @@ public class pagina_iniziale extends JFrame{
 	private JTextField username_textField;
 	private JPasswordField password_textField;
 	public static String nomeLogin = " ";
-
+    String check_username = " ";
+    
 	/**
 	 * Launch the application.
 	 */
@@ -75,11 +79,17 @@ public class pagina_iniziale extends JFrame{
 		login_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Login effettuato con successo!");
 				nomeLogin = username_textField.getText();
+				check_username = checkLogin.checkUsername();
+				if (check_username != nomeLogin) {
+					JOptionPane.showMessageDialog(null, "Errore! Nome utente e/o password errati.");
+				}
+				else {
+				JOptionPane.showMessageDialog(null, "Login effettuato con successo!");
 				home_utente home = new home_utente();
 				home.setVisible(true);
 				start_frame.dispose();
+				}
 			}
 		});
 		

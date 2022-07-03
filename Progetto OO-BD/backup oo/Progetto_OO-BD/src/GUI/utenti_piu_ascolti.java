@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -35,7 +37,7 @@ public class utenti_piu_ascolti extends JFrame {
 	 * Create the frame.
 	 */
 	public utenti_piu_ascolti() {
-		setTitle("Utenti che hanno effettuato pi\u00F9 ascolti");
+		setTitle("Utenti che hanno effettuato più ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -55,5 +57,15 @@ public class utenti_piu_ascolti extends JFrame {
 		});
 		back_button.setBounds(10, 232, 115, 21);
 		contentPane.add(back_button);
+		
+		JList listaUtentiPiuAscolti = new JList();
+		listaUtentiPiuAscolti.setBounds(190, 235, 160, 197);
+		contentPane.add(listaUtentiPiuAscolti);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 414, 210);
+		contentPane.add(scrollPane);
+		
+		scrollPane.setViewportView(listaUtentiPiuAscolti);
 	}
 }

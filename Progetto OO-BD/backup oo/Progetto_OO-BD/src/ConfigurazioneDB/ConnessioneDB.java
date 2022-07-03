@@ -7,7 +7,7 @@ public class ConnessioneDB {
 	public static Connection connetti() {
         
 		Connection conn = null;
-	    String url = "jdbc:postgresql://localhost/LibreriaMusicale_db";
+	    String url = "jdbc:postgresql:LibreriaMusicale_db";
 	    String user = "postgres";
 	    String password = "universita10";
 	

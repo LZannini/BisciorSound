@@ -12,10 +12,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class home_admin extends JFrame {
 
 	private JPanel contentPane;
+    String nomeLoginAdmin = " ";
 
 	/**
 	 * Launch the application.
@@ -103,7 +106,13 @@ public class home_admin extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(145, 232, 130, 21);
+		btnNewButton.setBounds(145, 196, 130, 21);
 		contentPane.add(btnNewButton);
+		
+	    nomeLoginAdmin = adminLogin_frame.getNomeLoginAdmin();
+		JLabel label_saluto = new JLabel("Ciao, "+nomeLoginAdmin+"!");
+		label_saluto.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+		label_saluto.setBounds(282, 241, 170, 20);
+		contentPane.add(label_saluto);
 	}
 }
