@@ -15,7 +15,7 @@ import DAO.UtenteDAO;
 
 public class UtenteImplementazionePG_DAO implements UtenteDAO {
 	
-    private static Connection conn;
+    private Connection conn;
 	
     public UtenteImplementazionePG_DAO() {
 		
@@ -34,11 +34,8 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 
 	    Statement st = null;
 	    ResultSet rs = null;
-	    Connection conn = null;
-		
 		
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
 		} catch (SQLException e1) {
@@ -75,6 +72,13 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+	    
+	    try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return lista;
 	}
@@ -86,8 +90,6 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 
 	    Statement st = null;
 	    ResultSet rs = null;
-	    Connection conn = null;
-		
 		
 		try {
 			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
@@ -128,43 +130,46 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	    
+	    try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 		return lista;
 		
 	}
 	
-	public boolean checkLogin(String user_name, String user_password) throws SQLException {
+	public boolean checkLogin(Utente U) throws SQLException {
 
         String login = " ";
         ResultSet rs = null;
 
         do {
-        	login = "select * from utente where username = ? and password = ? and admin = false" ;
+        	login = "select * from utente where username = '"+U.getUsername()+"' and password = '"+U.getPassword()+"' and admin = false" ;
         			
         	PreparedStatement ps = conn.prepareStatement(login);
-
-            ps.setString(1, user_name);
-            ps.setString(2, user_password);
             
             rs = ps.executeQuery();
             
             if (rs.next()) return true;
             else return false;
         }while (!rs.next());
+        
     }  
 
-	public boolean checkLoginAdmin(String user_name, String user_password) throws SQLException {
+	public boolean checkLoginAdmin(Utente U) throws SQLException {
 
         String login = " ";
         ResultSet rs = null;
 
         do {
-        	login = "select * from utente where username = ? and password = ? and admin = true" ;
+        	login = "select * from utente where username = '"+U.getUsername()+"' and password = '"+U.getPassword()+"' and admin = true" ;
         			
         	PreparedStatement ps = conn.prepareStatement(login);
 
-            ps.setString(1, user_name);
-            ps.setString(2, user_password);
-            
             rs = ps.executeQuery();
             
             if (rs.next()) return true;
@@ -172,17 +177,15 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
         }while (!rs.next());
     }
 	
-	public boolean checkIfAdmin(String user_name) throws SQLException {
+	public boolean checkIfAdmin(Utente U) throws SQLException {
 
         String query = " ";
         ResultSet rs = null;
 
         do {
-        	query = "select * from utente where username = ? and admin = true" ;
+        	query = "select * from utente where username = '"+U.getUsername()+"' and admin = true" ;
         			
         	PreparedStatement ps = conn.prepareStatement(query);
-
-            ps.setString(1, user_name);
             
             rs = ps.executeQuery();
             
@@ -194,7 +197,6 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 	public void registra_utente(String nome_ut, String password) {
 
 		PreparedStatement ps  = null;
-	    Connection conn = null;
 		
 		nome_ut = GUI.registration_frame.getNomeReg(nome_ut);
 		password = GUI.registration_frame.getPasswordReg(password);
@@ -236,6 +238,13 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+	    
+	    try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 }
 }

@@ -1,5 +1,5 @@
 package GUI;
-
+import Model.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -27,6 +27,8 @@ public class preferiti_cover extends JFrame {
 	boolean checkAdmin = false;
 	String user = GUI.adminLogin_frame.getNomeLoginAdmin();
 	String scelta = null;
+	Cover C;
+	Utente U;
 	
 
 	/**
@@ -96,7 +98,7 @@ public class preferiti_cover extends JFrame {
 		contentPane.add(scrollPane);	
 		
 		PreferitiCoverImplementazionePG_DAO preferitiCoverImplementazionePG_DAO = new PreferitiCoverImplementazionePG_DAO();
-		preferitiCoverImplementazionePG_DAO.mostra_preferiti_cover(listaPreferiti);
+		preferitiCoverImplementazionePG_DAO.mostra_preferiti_cover(listaPreferiti, C, U);
 		
 		JButton remPreferiti_bttn = new JButton("Rimuovi ");
 		remPreferiti_bttn.addMouseListener(new MouseAdapter() {

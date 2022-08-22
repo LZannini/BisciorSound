@@ -11,11 +11,11 @@ import java.sql.Statement;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
-import DAO.PreferitiDAO;
+import DAO.*;
 
 public class PreferitiImplementazionePG_DAO implements PreferitiDAO {
 	
-    private static Connection conn;
+    private Connection conn;
 	
     public PreferitiImplementazionePG_DAO() {
 		
@@ -27,21 +27,15 @@ public class PreferitiImplementazionePG_DAO implements PreferitiDAO {
 		}
 	}
     
-    public JList mostra_preferiti(JList lista) {
+    public JList mostra_preferiti(JList lista, Traccia T, Utente U) {
 		 
-		 
-		String nomeLogin = GUI.pagina_iniziale.getNomeLogin();
-		String nomeLoginAdmin = GUI.adminLogin_frame.getNomeLoginAdmin();
-		String query = "select nome from traccia, utente, preferiti where preferiti.id_traccia = traccia.id_track and preferiti.id_utente = utente.user_id and (utente.username = '" +nomeLogin+ "' or utente.username = '" +nomeLoginAdmin+ "') order by traccia.nome";
+		String query = "select nome from traccia, utente, preferiti where preferiti.id_traccia = '"+T.getId_track()+"' and preferiti.id_utente = '"+U.getUser_id()+"' and utente.username = '" +U.getUsername()+ "' order by traccia.nome";
 		DefaultListModel model = new DefaultListModel();  
 
 	    Statement st = null;
 	    ResultSet rs = null;
-	    Connection conn = null;
-		
 		
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
 		} catch (SQLException e1) {
@@ -82,32 +76,18 @@ public class PreferitiImplementazionePG_DAO implements PreferitiDAO {
 		return lista;
     }
     
-    public void aggiungi_preferito(String traccia) {
+    public void aggiungi_preferito(Traccia T, Utente U) {
 
 		PreparedStatement ps  = null;
-	    Connection conn = null;
-	    String ut1 = GUI.pagina_iniziale.getNomeLogin();
-	    String ut2 = GUI.adminLogin_frame.getNomeLoginAdmin();
 		
-		String query = "INSERT INTO preferiti(id_utente, id_traccia) SELECT user_id, id_track from utente, traccia where traccia.nome = ? and (utente.username = ? or utente.username = ?)";
+		String query = "INSERT INTO preferiti(id_utente, id_traccia) SELECT user_id, id_track from utente, traccia where traccia.nome = '"+T.getNome()+"' and utente.username = '"+U.getUsername()+"' ";
 		
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			ps = conn.prepareStatement(query);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		try {
-			ps.setString(1, traccia);
-			ps.setString(2, ut1);
-			ps.setString(3, ut2);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 		try {
 			ps.execute();
@@ -121,33 +101,26 @@ public class PreferitiImplementazionePG_DAO implements PreferitiDAO {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+	    try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 }
  
- public void rimuovi_preferito(String traccia) {
+ public void rimuovi_preferito(Traccia T, Utente U) {
 
 		PreparedStatement ps  = null;
-	    Connection conn = null;
-	    String ut1 = GUI.pagina_iniziale.getNomeLogin();
-	    String ut2 = GUI.adminLogin_frame.getNomeLoginAdmin();
 		
-		String query = "delete from preferiti where id_utente = (select user_id from utente where (username = ? or username = ?)) and id_traccia = (select id_track from traccia where nome = ?)";
+		String query = "delete from preferiti where id_utente = (select user_id from utente where username = '"+U.getUsername()+"') and id_traccia = (select id_track from traccia where nome = '"+T.getNome()+"')";
 		
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			ps = conn.prepareStatement(query);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		
-		try {
-			ps.setString(1, ut1);
-			ps.setString(2, ut2);
-			ps.setString(3, traccia);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		
@@ -164,6 +137,14 @@ public class PreferitiImplementazionePG_DAO implements PreferitiDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	    try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 }
+
+
 
 }

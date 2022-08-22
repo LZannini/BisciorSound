@@ -8,7 +8,7 @@ import Model.*;
 
 public class AscoltoImplementazionePG_DAO implements AscoltoDAO {
 	
-    private static Connection conn;
+    private Connection conn;
 	
     public AscoltoImplementazionePG_DAO() {
 		

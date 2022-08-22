@@ -13,7 +13,7 @@ import DAO.CoverDAO;
 
 public class CoverImplementazionePG_DAO implements CoverDAO {
 	
-    private static Connection conn;
+    private Connection conn;
 	
     public CoverImplementazionePG_DAO() {
 		
@@ -32,11 +32,8 @@ public class CoverImplementazionePG_DAO implements CoverDAO {
 
 	    Statement st = null;
 	    ResultSet rs = null;
-	    Connection conn = null;
-		
 		
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
 		} catch (SQLException e1) {

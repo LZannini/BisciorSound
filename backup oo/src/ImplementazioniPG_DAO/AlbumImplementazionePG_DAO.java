@@ -14,7 +14,7 @@ import Model.*;
 
 public class AlbumImplementazionePG_DAO implements AlbumDAO {
 	
-	private static Connection conn;
+	private Connection conn;
 	
     public AlbumImplementazionePG_DAO() {
 		
@@ -33,11 +33,8 @@ public class AlbumImplementazionePG_DAO implements AlbumDAO {
 
 	    Statement st = null;
 	    ResultSet rs = null;
-	    Connection conn = null;
-		
-		
+	    
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
 		} catch (SQLException e1) {

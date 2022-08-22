@@ -14,7 +14,7 @@ import DAO.TracciaDAO;
 
 public class TracceImplementazionePG_DAO implements TracciaDAO {
 	
-    private static Connection conn;
+    private Connection conn;
 	
     public TracceImplementazionePG_DAO() {
 		
@@ -33,11 +33,8 @@ public class TracceImplementazionePG_DAO implements TracciaDAO {
 
 	    Statement st = null;
 	    ResultSet rs = null;
-	    Connection conn = null;
-		
 		
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
 		} catch (SQLException e1) {
