@@ -1,5 +1,6 @@
 package GUI;
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import java.awt.event.MouseEvent;
 public class registration_frame extends JFrame {
 
 	private JPanel contentPane;
+	private Controller controller;
 	private JTextField utenteRG_field;
 	private JPasswordField passwordRG_field;
 	private JPasswordField CpasswordRG_field;
@@ -25,26 +27,11 @@ public class registration_frame extends JFrame {
 	String password_rg= " ";
 	String cpassword_rg= " ";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					registration_frame frame = new registration_frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public registration_frame() {
+	public registration_frame(Controller c, JFrame frameChiamante) {
 		setTitle("Registrazione");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

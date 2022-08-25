@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,27 +21,12 @@ public class opzioni_admin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					opzioni_admin frame = new opzioni_admin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Controller controller;
 
 	/**
 	 * Create the frame.
 	 */
-	public opzioni_admin() {
+	public opzioni_admin(Controller c, JFrame frameChiamante) {
 		setTitle("Opzioni Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -54,7 +40,7 @@ public class opzioni_admin extends JFrame {
 		back_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				home_admin home_admin = new home_admin();
+				home_admin home_admin = new home_admin(controller, frameChiamante);
 				home_admin.setVisible(true);
 				dispose();
 			}
@@ -92,12 +78,12 @@ public class opzioni_admin extends JFrame {
 				if (scelta == "---")
 				    JOptionPane.showMessageDialog(null, "Errore. Nessuna operazione scelta!");
 				else if (scelta == "Utenti che hanno effettuato pi� ascolti") {
-					utenti_piu_ascolti utenti_piu_ascolti = new utenti_piu_ascolti();
+					utenti_piu_ascolti utenti_piu_ascolti = new utenti_piu_ascolti(controller, frameChiamante);
 				    utenti_piu_ascolti.setVisible(true);
 				    dispose();
 				}			
 				else if (scelta == "Fascia oraria in cui un utente ha effettuato pi� ascolti") {
-					fasciaoraria_piu_ascolti fasciaoraria_piu_ascolti = new fasciaoraria_piu_ascolti();
+					fasciaoraria_piu_ascolti fasciaoraria_piu_ascolti = new fasciaoraria_piu_ascolti(controller, frameChiamante);
 					fasciaoraria_piu_ascolti.setVisible(true);
 					dispose();
 				}
@@ -110,7 +96,7 @@ public class opzioni_admin extends JFrame {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lista_utenti lista_admin = new lista_utenti();
+				lista_utenti lista_admin = new lista_utenti(controller, frameChiamante);
 				lista_admin.setVisible(true);
 				dispose();
 			}

@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,27 +17,12 @@ import java.awt.event.MouseEvent;
 public class utenti_piu_ascolti extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					utenti_piu_ascolti frame = new utenti_piu_ascolti();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Controller controller;
 
 	/**
 	 * Create the frame.
 	 */
-	public utenti_piu_ascolti() {
+	public utenti_piu_ascolti(Controller c, JFrame frameChiamante) {
 		setTitle("Utenti che hanno effettuato più ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -50,7 +36,7 @@ public class utenti_piu_ascolti extends JFrame {
 		back_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				opzioni_admin opzioni_admin = new opzioni_admin();
+				opzioni_admin opzioni_admin = new opzioni_admin(controller, frameChiamante);
 				opzioni_admin.setVisible(true);
 				dispose();
 			}

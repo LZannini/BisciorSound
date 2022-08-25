@@ -28,31 +28,17 @@ import java.sql.*;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
+import Controller.*;
 
 public class lista_utenti extends JFrame {
 
 	private JPanel contentPane;
+	private Controller controller;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					lista_utenti frame = new lista_utenti();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	/**
 	 * Create the frame.
 	 */
-	public lista_utenti() {
+	public lista_utenti(Controller c, JFrame frameChiamante) {
 		setTitle("Lista Utenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -66,7 +52,7 @@ public class lista_utenti extends JFrame {
 		back_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				opzioni_admin opzioni_admin = new opzioni_admin();
+				opzioni_admin opzioni_admin = new opzioni_admin(controller, frameChiamante);
 				opzioni_admin.setVisible(true);
 				dispose();
 			}

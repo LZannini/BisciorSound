@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,31 +21,16 @@ import java.sql.SQLException;
 public class tracce_frame extends JFrame {
 
 	private JPanel contentPane;
+	private Controller controller;
 	Connection conn = null;
 	boolean checkAdmin = false;
 	String user = GUI.adminLogin_frame.getNomeLoginAdmin();
 	String scelta = null;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					tracce_frame frame = new tracce_frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public tracce_frame() {
+	public tracce_frame(Controller c, JFrame frameChiamante) {
 		setTitle("Lista Tracce");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -65,12 +51,12 @@ public class tracce_frame extends JFrame {
 					e1.printStackTrace();
 				}
 				if (checkAdmin == true) {
-					home_admin home_admin = new home_admin();
+					home_admin home_admin = new home_admin(controller, frameChiamante);
 					home_admin.setVisible(true);
 					dispose();
 				}
 				else {
-				    home_utente home_utente = new home_utente();
+				    home_utente home_utente = new home_utente(controller, frameChiamante);
 				    home_utente.setVisible(true);
 				    dispose();
 				};
@@ -95,7 +81,7 @@ public class tracce_frame extends JFrame {
 		button_cover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cover_frame lista_cover = new cover_frame();
+				cover_frame lista_cover = new cover_frame(controller, frameChiamante);
 				lista_cover.setVisible(true);
 				dispose();
 			}

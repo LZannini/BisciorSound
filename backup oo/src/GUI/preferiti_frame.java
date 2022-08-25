@@ -15,35 +15,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
+import Controller.*;
 
 public class preferiti_frame extends JFrame {
 
 	private JPanel contentPane;
+	private Controller controller;
 	Connection conn = null;
 	boolean checkAdmin = false;
 	String user = GUI.adminLogin_frame.getNomeLoginAdmin();
 	String scelta = null;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					preferiti_frame frame = new preferiti_frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public preferiti_frame() {
+	public preferiti_frame(Controller c, JFrame frameChiamante) {
 		setTitle("Lista Preferiti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -64,12 +50,12 @@ public class preferiti_frame extends JFrame {
 					e1.printStackTrace();
 				}
 				if (checkAdmin == true) {
-					home_admin home_admin = new home_admin();
+					home_admin home_admin = new home_admin(controller, frameChiamante);
 					home_admin.setVisible(true);
 					dispose();
 				}
 				else {
-				    home_utente home_utente = new home_utente();
+				    home_utente home_utente = new home_utente(controller, frameChiamante);
 				    home_utente.setVisible(true);
 				    dispose();
 				}
@@ -100,7 +86,7 @@ public class preferiti_frame extends JFrame {
 				    JOptionPane.showMessageDialog(null, "Errore. Nessuna traccia scelta!");
 				else {
 					DAELIMINARE.gestionePreferiti.rimuovi_preferito(scelta);
-					preferiti_frame preferiti_frame = new preferiti_frame();
+					preferiti_frame preferiti_frame = new preferiti_frame(controller, frameChiamante);
 					preferiti_frame.setVisible(true);
 					dispose();
 				}
@@ -115,7 +101,7 @@ public class preferiti_frame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				preferiti_cover preferiti_cover = null;
 				try {
-					preferiti_cover = new preferiti_cover();
+					preferiti_cover = new preferiti_cover(controller, frameChiamante);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

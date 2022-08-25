@@ -1,5 +1,6 @@
 package GUI;
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import java.sql.SQLException;
 public class adminLogin_frame extends JFrame {
 
 	private JPanel contentPane;
+	private Controller controller;
 	private JTextField adminusername_field;
 	private JPasswordField adminpassword_field;
 	public static String nomeLoginAdmin = " ";
@@ -27,25 +29,9 @@ public class adminLogin_frame extends JFrame {
 	boolean checkLogin = false;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					adminLogin_frame frame = new adminLogin_frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public adminLogin_frame() {
+	public adminLogin_frame(Controller c, JFrame frameChiamante) {
 		setTitle("Admin Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -95,7 +81,7 @@ public class adminLogin_frame extends JFrame {
 				
 				else {
 					JOptionPane.showMessageDialog(null, "Admin Login effettuato con successo!");
-					home_admin home_admin = new home_admin();
+					home_admin home_admin = new home_admin(controller, frameChiamante);
 					home_admin.setVisible(true);
 					dispose();
 				}
@@ -108,7 +94,7 @@ public class adminLogin_frame extends JFrame {
 		back_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pagina_iniziale pagina_iniziale = new pagina_iniziale();
+				pagina_iniziale pagina_iniziale = new pagina_iniziale(controller);
 				pagina_iniziale.start_frame.setVisible(true);
 				dispose();
 				

@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,30 +17,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 public class home_admin extends JFrame {
-
+	
+    JFrame frame;
 	private JPanel contentPane;
+	private Controller controller;
     String nomeLoginAdmin = " ";
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					home_admin frame = new home_admin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public home_admin() {
+	public home_admin(Controller c, JFrame frameChiamante) {
 		setTitle("Home - Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -57,7 +44,7 @@ public class home_admin extends JFrame {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tracce_frame tracce_frame = new tracce_frame();
+				tracce_frame tracce_frame = new tracce_frame(controller, frameChiamante);
 				tracce_frame.setVisible(true);
 				dispose();
 			}
@@ -68,7 +55,7 @@ public class home_admin extends JFrame {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				album_frame album_frame = new album_frame();
+				album_frame album_frame = new album_frame(controller, frame);
 				album_frame.setVisible(true);
 				dispose();
 			}
@@ -79,7 +66,7 @@ public class home_admin extends JFrame {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ascolti_frame ascolti_frame = new ascolti_frame();
+				ascolti_frame ascolti_frame = new ascolti_frame(controller, frameChiamante);
 				ascolti_frame.setVisible(true);
 				dispose();
 			}
@@ -90,7 +77,7 @@ public class home_admin extends JFrame {
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				preferiti_frame preferiti_frame = new preferiti_frame();
+				preferiti_frame preferiti_frame = new preferiti_frame(controller, frameChiamante);
 				preferiti_frame.setVisible(true);
 				dispose();
 			}
@@ -101,7 +88,7 @@ public class home_admin extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				opzioni_admin opzioni_admin = new opzioni_admin();
+				opzioni_admin opzioni_admin = new opzioni_admin(controller, frameChiamante);
 				opzioni_admin.setVisible(true);
 				dispose();
 			}

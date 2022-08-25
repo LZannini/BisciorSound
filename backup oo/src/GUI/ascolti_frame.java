@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,30 +19,15 @@ import java.sql.SQLException;
 public class ascolti_frame extends JFrame {
 
 	private JPanel contentPane;
+	private Controller controller;
 	Connection conn = null;
 	boolean checkAdmin = false;
 	String user = GUI.adminLogin_frame.getNomeLoginAdmin();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ascolti_frame frame = new ascolti_frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public ascolti_frame() {
+	public ascolti_frame(Controller c, JFrame frameChiamante) {
 		setTitle("Ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -62,12 +48,12 @@ public class ascolti_frame extends JFrame {
 					e1.printStackTrace();
 				}
 				if (checkAdmin == true) {
-					home_admin home_admin = new home_admin();
+					home_admin home_admin = new home_admin(controller, frameChiamante);
 					home_admin.setVisible(true);
 					dispose();
 				}
 				else {
-				    home_utente home_utente = new home_utente();
+				    home_utente home_utente = new home_utente(controller, frameChiamante);
 				    home_utente.setVisible(true);
 				    dispose();
 				}

@@ -15,11 +15,12 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import Controller.*;
 
 public class pagina_iniziale extends JFrame{
 
 	JFrame start_frame;
+	private Controller controller;
 	private JTextField username_textField;
 	private JPasswordField password_textField;
 	public static String nomeLogin = " ";
@@ -27,28 +28,14 @@ public class pagina_iniziale extends JFrame{
     String check_username = " ";
     Connection conn = null;
     boolean tryLogin = false;
-    
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-			EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					pagina_iniziale window = new pagina_iniziale();
-					window.start_frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public pagina_iniziale() {
+	public pagina_iniziale(Controller c) {
+		controller = c;
 		initialize();
+		start_frame.setVisible(true);
 	}
 
 	/**
@@ -102,7 +89,7 @@ public class pagina_iniziale extends JFrame{
 				
 				else {
 				JOptionPane.showMessageDialog(null, "Login effettuato con successo!");
-				home_utente home = new home_utente();
+				home_utente home = new home_utente(controller, start_frame);
 				home.setVisible(true);
 				start_frame.dispose();
 				}
@@ -121,7 +108,7 @@ public class pagina_iniziale extends JFrame{
 		registrati_label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				registration_frame registration_frame = new registration_frame();
+				registration_frame registration_frame = new registration_frame(controller, start_frame);
 				registration_frame.setVisible(true);
 			}
 		});
@@ -134,7 +121,7 @@ public class pagina_iniziale extends JFrame{
 		adminAccess_label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				adminLogin_frame adminLogin_frame = new adminLogin_frame();
+				adminLogin_frame adminLogin_frame = new adminLogin_frame(controller, start_frame);
 				adminLogin_frame.setVisible(true);
 				start_frame.dispose();
 			}

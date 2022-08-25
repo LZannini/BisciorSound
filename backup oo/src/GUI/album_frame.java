@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,30 +19,19 @@ import java.sql.SQLException;
 public class album_frame extends JFrame {
 
 	private JPanel contentPane;
+	private static Controller controller;
 	Connection conn = null;
 	boolean checkAdmin = false;
 	String user = GUI.adminLogin_frame.getNomeLoginAdmin();
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					album_frame frame = new album_frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public album_frame() {
+	public album_frame(Controller c, JFrame frameChiamante) {
+		frameChiamante = this;
+		controller = c;
+		album_frame frame = new album_frame(c, frameChiamante);
+		frame.setVisible(true);
 		setTitle("Lista Album");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -50,6 +40,7 @@ public class album_frame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JButton back_button = new JButton("Home");
 		back_button.addMouseListener(new MouseAdapter() {
@@ -62,12 +53,12 @@ public class album_frame extends JFrame {
 					e1.printStackTrace();
 				}
 				if (checkAdmin == true) {
-					home_admin home_admin = new home_admin();
+					home_admin home_admin = new home_admin(controller, frame);
 					home_admin.setVisible(true);
 					dispose();
 				}
 				else {
-				    home_utente home_utente = new home_utente();
+				    home_utente home_utente = new home_utente(controller, frame);
 				    home_utente.setVisible(true);
 				    dispose();
 				}
@@ -85,8 +76,6 @@ public class album_frame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		scrollPane.setViewportView(listaAlbum);
-		
-		DAELIMINARE.listaAlbum.mostra_album(listaAlbum);
 	}
 
 }

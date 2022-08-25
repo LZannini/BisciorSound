@@ -1,5 +1,6 @@
 package GUI;
 import Model.*;
+import Controller.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -23,35 +24,19 @@ import java.sql.SQLException;
 public class preferiti_cover extends JFrame {
 
 	private JPanel contentPane;
+	private Controller controller;
 	Connection conn = null;
 	boolean checkAdmin = false;
 	String user = GUI.adminLogin_frame.getNomeLoginAdmin();
 	String scelta = null;
 	Cover C;
 	Utente U;
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					preferiti_cover frame = new preferiti_cover();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public preferiti_cover() throws SQLException {
+	public preferiti_cover(Controller c, JFrame frameChiamante) throws SQLException {
 		setTitle("Lista Preferiti (Cover)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -72,12 +57,12 @@ public class preferiti_cover extends JFrame {
 					e1.printStackTrace();
 				}
 				if (checkAdmin == true) {
-					home_admin home_admin = new home_admin();
+					home_admin home_admin = new home_admin(controller, frameChiamante);
 					home_admin.setVisible(true);
 					dispose();
 				}
 				else {
-				    home_utente home_utente = new home_utente();
+				    home_utente home_utente = new home_utente(controller, frameChiamante);
 				    home_utente.setVisible(true);
 				    dispose();
 				}
@@ -111,7 +96,7 @@ public class preferiti_cover extends JFrame {
 					DAELIMINARE.gestionePreferiti.rimuovi_preferito_cover(scelta);
 					preferiti_cover preferiti_frame = null;
 					try {
-						preferiti_frame = new preferiti_cover();
+						preferiti_frame = new preferiti_cover(controller, frameChiamante);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -128,7 +113,7 @@ public class preferiti_cover extends JFrame {
 		button_cover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				preferiti_frame preferiti_frame = new preferiti_frame();
+				preferiti_frame preferiti_frame = new preferiti_frame(controller, frameChiamante);
 				preferiti_frame.setVisible(true);
 				dispose();
 			}
