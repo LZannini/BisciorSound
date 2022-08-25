@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import javax.swing.*;
 import DAO.*;
 import ImplementazioniPG_DAO.*;
 import ConfigurazioneDB.ConnessioneDB;
@@ -15,9 +16,15 @@ public class Controller {
 	Traccia T;
 	Utente U;
 	
-	UtenteDAO UD = new UtenteImplementazionePG_DAO();
+    public Controller() {
+		
+	}
 	
-	Utente utente1 = new Utente(213, "bellaraga12", "buonasera", false);
+	public void ListaAlbum() {
+		JList lista = new JList();
+		AlbumDAO A = new AlbumImplementazionePG_DAO();
+		A.mostra_album(lista);
+	}
 	
    	
 
