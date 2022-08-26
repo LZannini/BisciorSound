@@ -17,13 +17,22 @@ public class Controller {
 	Utente U;
 	
     public Controller() {
-		
+
 	}
 	
-	public void ListaAlbum() {
-		JList lista = new JList();
+	public void ListaAlbum(JList lista) {
 		AlbumDAO A = new AlbumImplementazionePG_DAO();
 		A.mostra_album(lista);
+	}
+	
+	public void ListaUtenti(JList lista) {
+		UtenteDAO U = new UtenteImplementazionePG_DAO();
+		U.mostra_utenti(lista);
+	}
+	
+	public void ListaAdmin(JList lista) {
+		UtenteDAO U = new UtenteImplementazionePG_DAO();
+		U.mostra_admin(lista);
 	}
 	
    	
