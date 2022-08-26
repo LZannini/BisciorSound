@@ -19,7 +19,8 @@ import java.sql.SQLException;
 public class album_frame extends JFrame {
 
 	private JPanel contentPane;
-	private static Controller controller;
+	private Controller controller;
+	private JFrame frame;
 	Connection conn = null;
 	boolean checkAdmin = false;
 	String user = GUI.adminLogin_frame.getNomeLoginAdmin();
@@ -28,9 +29,9 @@ public class album_frame extends JFrame {
 	 * Create the frame.
 	 */
 	public album_frame(Controller c, JFrame frameChiamante) {
-		frameChiamante = this;
+		frame = this;
+		c = new Controller();
 		controller = c;
-		album_frame frame = new album_frame(c, frameChiamante);
 		frame.setVisible(true);
 		setTitle("Lista Album");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +77,7 @@ public class album_frame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		scrollPane.setViewportView(listaAlbum);
+		controller.ListaAlbum(listaAlbum);
 	}
 
 }

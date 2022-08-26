@@ -34,11 +34,15 @@ public class lista_utenti extends JFrame {
 
 	private JPanel contentPane;
 	private Controller controller;
+	private JFrame frame;
 
 	/**
 	 * Create the frame.
 	 */
 	public lista_utenti(Controller c, JFrame frameChiamante) {
+		frame = this;
+		c = new Controller();
+		controller = c;
 		setTitle("Lista Utenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -81,7 +85,7 @@ public class lista_utenti extends JFrame {
 		bottone_admin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DAELIMINARE.listaUtenti.mostra_admin(listaAdmin);		
+				controller.ListaAdmin(listaAdmin);
 			}
 		});
 		bottone_admin.setBounds(180, 187, 76, 35);
@@ -91,7 +95,7 @@ public class lista_utenti extends JFrame {
 		bottone_utenti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DAELIMINARE.listaUtenti.mostra_utenti(listaUtenti);
+				controller.ListaUtenti(listaUtenti);
 		}
 		});
 		bottone_utenti.setBounds(180, 25, 76, 35);
