@@ -92,7 +92,6 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 	    ResultSet rs = null;
 		
 		try {
-			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
 		} catch (SQLException e1) {
