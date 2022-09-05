@@ -44,7 +44,7 @@ public class home_admin extends JFrame {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tracce_frame tracce_frame = new tracce_frame(controller, frameChiamante);
+				lista_tracce tracce_frame = new lista_tracce(controller, frameChiamante);
 				tracce_frame.setVisible(true);
 				dispose();
 			}
@@ -55,7 +55,7 @@ public class home_admin extends JFrame {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				album_frame album_frame = new album_frame(controller, frame);
+				lista_album album_frame = new lista_album(controller, frame);
 				album_frame.setVisible(true);
 				dispose();
 			}
@@ -66,7 +66,7 @@ public class home_admin extends JFrame {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ascolti_frame ascolti_frame = new ascolti_frame(controller, frameChiamante);
+				lista_ascolti ascolti_frame = new lista_ascolti(controller, frameChiamante);
 				ascolti_frame.setVisible(true);
 				dispose();
 			}
@@ -77,7 +77,7 @@ public class home_admin extends JFrame {
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				preferiti_frame preferiti_frame = new preferiti_frame(controller, frameChiamante);
+				lista_preferiti preferiti_frame = new lista_preferiti(controller, frameChiamante);
 				preferiti_frame.setVisible(true);
 				dispose();
 			}
@@ -96,7 +96,7 @@ public class home_admin extends JFrame {
 		btnNewButton.setBounds(145, 196, 130, 21);
 		contentPane.add(btnNewButton);
 		
-	    nomeLoginAdmin = adminLogin_frame.getNomeLoginAdmin();
+	    nomeLoginAdmin = admin_login.getNomeLoginAdmin();
 		JLabel label_saluto = new JLabel("Ciao, "+nomeLoginAdmin+"!");
 		label_saluto.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		label_saluto.setBounds(282, 241, 170, 20);

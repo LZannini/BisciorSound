@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import Model.*;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -12,10 +13,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 import DAO.UtenteDAO;
+import GUI.pagina_iniziale;
 
 public class UtenteImplementazionePG_DAO implements UtenteDAO {
 	
     private Connection conn;
+    private Utente U;
 	
     public UtenteImplementazionePG_DAO() {
 		
@@ -158,6 +161,75 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
         }while (!rs.next());
         
     }  
+	
+	public Utente DatiUtente(String username, String password)
+	{
+		PreparedStatement login;
+		try {
+			login = conn.prepareStatement("SELECT * FROM Utente WHERE username ='"+username+"' AND password = '"+password+"'");
+			
+		ResultSet rs = login.executeQuery();
+		while(rs.next()) {
+			U = new Utente(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"), rs.getBoolean("admin"));
+		}
+		rs.close();
+		return U;
+		
+		} 
+		catch (SQLException e) {
+	
+			e.printStackTrace();
+			return null;
+
+		}
+	}
+	
+	public void utenteLoggato(int id, String nome, String password, boolean admin) {
+		
+		Utente U = null;
+
+		try {
+		     Statement st = conn.createStatement();
+		     ResultSet rs = st.executeQuery("select * from utente where username = '"+pagina_iniziale.getNomeLogin()+"'");
+		     while (rs.next()) {
+		        id = rs.getInt(id);
+		        nome = rs.getString(nome);
+		        password = rs.getString(password);
+		        admin = rs.getBoolean(password);
+
+		        U = new Utente(id, nome, password, admin);
+		        }
+		     rs.close();
+		     st.close();
+		  } catch (SQLException ex) {
+
+		    }
+		U.setAdmin(admin);
+		U.setPassword(password);
+		U.setUser_id(id);
+		U.setUsername(password);
+		
+    } 
+	
+    public String riempiNome(String nome) {
+
+
+		try {
+		     Statement st = conn.createStatement();
+		     ResultSet rs = st.executeQuery("select * from utente where username = '"+pagina_iniziale.getNomeLogin()+"'");
+		     while (rs.next()) {
+		        
+		        nome = rs.getString(nome);
+
+		        }
+		     rs.close();
+		     st.close();
+		  } catch (SQLException ex) {
+
+		    }
+				return nome;
+		
+    }
 
 	public boolean checkLoginAdmin(Utente U) throws SQLException {
 
@@ -197,8 +269,8 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 
 		PreparedStatement ps  = null;
 		
-		nome_ut = GUI.registration_frame.getNomeReg(nome_ut);
-		password = GUI.registration_frame.getPasswordReg(password);
+		nome_ut = GUI.registrazione.getNomeReg(nome_ut);
+		password = GUI.registrazione.getPasswordReg(password);
 		
 		String query = "INSERT INTO utente (username, password, admin) VALUES (?, ?, false)";
 		
@@ -246,4 +318,12 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			e.printStackTrace();
 		}
 }
+
+	@Override
+	public void UserData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

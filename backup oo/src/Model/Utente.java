@@ -1,4 +1,5 @@
 package Model;
+import Controller.*;
 
 public class Utente {
 	
@@ -6,6 +7,7 @@ public class Utente {
 	private String username;
 	private String password;
 	private boolean admin;
+	private int id;
 	
 	public int getUser_id() {
 		return user_id;

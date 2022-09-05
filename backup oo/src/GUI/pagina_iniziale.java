@@ -1,4 +1,5 @@
 package GUI;
+import Model.*;
 import java.awt.EventQueue;
 import java.sql.*;
 
@@ -28,6 +29,7 @@ public class pagina_iniziale extends JFrame{
     String check_username = " ";
     Connection conn = null;
     boolean tryLogin = false;
+    static Utente U;
 
 	/**
 	 * Create the application.
@@ -89,6 +91,7 @@ public class pagina_iniziale extends JFrame{
 				
 				else {
 				JOptionPane.showMessageDialog(null, "Login effettuato con successo!");
+                U = new Utente(20, nomeLogin, passwordLogin, false);
 				home_utente home = new home_utente(controller, start_frame);
 				home.setVisible(true);
 				start_frame.dispose();
@@ -108,7 +111,7 @@ public class pagina_iniziale extends JFrame{
 		registrati_label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				registration_frame registration_frame = new registration_frame(controller, start_frame);
+				registrazione registration_frame = new registrazione(controller, start_frame);
 				registration_frame.setVisible(true);
 			}
 		});
@@ -121,7 +124,7 @@ public class pagina_iniziale extends JFrame{
 		adminAccess_label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				adminLogin_frame adminLogin_frame = new adminLogin_frame(controller, start_frame);
+				admin_login adminLogin_frame = new admin_login(controller, start_frame);
 				adminLogin_frame.setVisible(true);
 				start_frame.dispose();
 			}
@@ -138,6 +141,10 @@ public class pagina_iniziale extends JFrame{
 	
 	public static String getPasswordLogin() {
 		return passwordLogin;
+	}
+	
+	public static Utente getUtente() {
+		return U;
 	}
 	
 }

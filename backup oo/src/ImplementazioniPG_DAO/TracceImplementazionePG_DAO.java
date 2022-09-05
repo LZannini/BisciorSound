@@ -72,6 +72,13 @@ public class TracceImplementazionePG_DAO implements TracciaDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	    
+	    try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return lista;
 	}
 

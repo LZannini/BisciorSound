@@ -1,5 +1,5 @@
 package GUI;
-
+import Model.*;
 import java.awt.BorderLayout;
 import Controller.*;
 import java.awt.EventQueue;
@@ -25,11 +25,15 @@ public class home_utente extends JFrame {
 	private JPanel contentPane;
 	private Controller controller;
 	String nomeLogin = " ";
+	Utente U;
 
 	/**
 	 * Create the frame.
 	 */
 	public home_utente(Controller c, JFrame frameChiamante) {
+		frame = this;
+		c = new Controller();
+		controller = c;
 		setTitle("Home");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -47,7 +51,7 @@ public class home_utente extends JFrame {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tracce_frame tracce_frame = new tracce_frame(controller, frameChiamante);
+				lista_tracce tracce_frame = new lista_tracce(controller, frameChiamante);
 				tracce_frame.setVisible(true);
 				dispose();
 			}
@@ -57,7 +61,7 @@ public class home_utente extends JFrame {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				album_frame album_frame = new album_frame(controller, frame);
+				lista_album album_frame = new lista_album(controller, frame);
 				album_frame.setVisible(true);
 				dispose();
 			}
@@ -67,7 +71,7 @@ public class home_utente extends JFrame {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ascolti_frame ascolti_frame = new ascolti_frame(controller, frameChiamante);
+				lista_ascolti ascolti_frame = new lista_ascolti(controller, frameChiamante);
 				ascolti_frame.setVisible(true);
 				dispose();
 			}
@@ -77,7 +81,7 @@ public class home_utente extends JFrame {
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				preferiti_frame preferiti_frame = new preferiti_frame(controller, frameChiamante);
+				lista_preferiti preferiti_frame = new lista_preferiti(controller, frameChiamante);
 				preferiti_frame.setVisible(true);
 				dispose();
 			}
@@ -89,5 +93,6 @@ public class home_utente extends JFrame {
 		label_saluto.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		label_saluto.setBounds(264, 241, 170, 20);
 		contentPane.add(label_saluto);
+		controller.UserData();
 	}
 }
