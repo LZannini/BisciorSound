@@ -184,9 +184,13 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 		}
 	}
 	
-	public void utenteLoggato(int id, String nome, String password, boolean admin) {
+	public Utente utenteLoggato() {
 		
-		Utente U = null;
+		
+		int id = 0;
+		String nome = null, password = null;
+		boolean admin = false;
+		Utente U = new Utente(id, nome, password, admin);
 
 		try {
 		     Statement st = conn.createStatement();
@@ -209,6 +213,7 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 		U.setUser_id(id);
 		U.setUsername(password);
 		
+		return U;
     } 
 	
     public String riempiNome(String nome) {
@@ -263,6 +268,7 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
             if (rs.next()) return true;
             else return false;
         }while (!rs.next());
+        
     } 
 	
 	public void registra_utente(String nome_ut, String password) {
@@ -317,13 +323,5 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-}
-
-	@Override
-	public void UserData() {
-		// TODO Auto-generated method stub
-		
 	}
-
-
 }

@@ -1,6 +1,9 @@
 package Controller;
 
 import Model.*;
+
+import java.sql.SQLException;
+
 import javax.swing.*;
 import DAO.*;
 import ImplementazioniPG_DAO.*;
@@ -20,17 +23,14 @@ public class Controller {
 
 	}
     
-	public void assignId(int id) {getU().id = id;}
-    
-    public void assignUsername(String user) {getU().username = user;}
-	
-	public void assignPassword(String password) {getU().password = password;}
-	
-	public void assignAdmin(Booleaan admin) {getU().admin = admin;}
-    
-    public void UserData() {
+    public Utente UserData() {
     	UtenteDAO U = new UtenteImplementazionePG_DAO();
-    	U.utenteLoggato(getU().getUser_id(), getU().getUsername(), getU().getPassword(), getU().isAdmin());
+    	return U.utenteLoggato();
+    }
+    
+    public boolean ControlloAdmin(Utente U) throws SQLException {
+    	UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+    	return U_DAO.checkIfAdmin(U);
     }
 	
 	public void ListaAlbum(JList lista) {

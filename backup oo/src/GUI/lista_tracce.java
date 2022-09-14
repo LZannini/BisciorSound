@@ -49,7 +49,7 @@ public class lista_tracce extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					checkAdmin = DAELIMINARE.controllaUtente.checkUserAdmin(conn, user);
+					checkAdmin = controller.ControlloAdmin(controller.UserData());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -68,6 +68,7 @@ public class lista_tracce extends JFrame {
 		});
 		back_button.setBounds(10, 232, 85, 21);
 		contentPane.add(back_button);
+		
 		
 		JList listaTracce = new JList();
 		listaTracce.setBounds(190, 235, 160, 197);

@@ -48,4 +48,9 @@ public class Utente {
 		this.password = password;
 		this.admin = admin;
 	}
+
+	public boolean checkIfAdmin(Utente u) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

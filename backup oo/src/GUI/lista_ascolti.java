@@ -27,7 +27,6 @@ public class lista_ascolti extends JFrame {
 	String nome, password;
 	boolean admin;
 	private JFrame frame;
-	Utente U;
 
 	/**
 	 * Create the frame.
@@ -44,17 +43,13 @@ public class lista_ascolti extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		nome = controller.NomeUtente(nome);
-		U.setUsername(nome);
-		
-		
 		
 		JButton back_button = new JButton("Home");
 		back_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					checkAdmin = DAELIMINARE.controllaUtente.checkUserAdmin(conn, user);
+					checkAdmin = controller.ControlloAdmin(controller.UserData());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

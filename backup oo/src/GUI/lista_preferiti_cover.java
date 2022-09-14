@@ -30,7 +30,6 @@ public class lista_preferiti_cover extends JFrame {
 	String user = GUI.admin_login.getNomeLoginAdmin();
 	String scelta = null;
 	Cover C;
-	Utente U;
 
 	/**
 	 * Create the frame.
@@ -51,7 +50,7 @@ public class lista_preferiti_cover extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					checkAdmin = DAELIMINARE.controllaUtente.checkUserAdmin(conn, user);
+					checkAdmin = controller.ControlloAdmin(controller.UserData());;
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -83,7 +82,7 @@ public class lista_preferiti_cover extends JFrame {
 		contentPane.add(scrollPane);	
 		
 		PreferitiCoverImplementazionePG_DAO preferitiCoverImplementazionePG_DAO = new PreferitiCoverImplementazionePG_DAO();
-		preferitiCoverImplementazionePG_DAO.mostra_preferiti_cover(listaPreferiti, C, U);
+		preferitiCoverImplementazionePG_DAO.mostra_preferiti_cover(listaPreferiti, C, controller.UserData());
 		
 		JButton remPreferiti_bttn = new JButton("Rimuovi ");
 		remPreferiti_bttn.addMouseListener(new MouseAdapter() {

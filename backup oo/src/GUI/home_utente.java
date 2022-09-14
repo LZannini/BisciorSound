@@ -87,12 +87,11 @@ public class home_utente extends JFrame {
 			}
 		});
 		menuBar.add(button_3);
-		
 		nomeLogin = pagina_iniziale.getNomeLogin();
 		JLabel label_saluto = new JLabel("Ciao, "+nomeLogin+"!");
 		label_saluto.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		label_saluto.setBounds(264, 241, 170, 20);
 		contentPane.add(label_saluto);
-		controller.UserData();
+		
 	}
 }

@@ -48,7 +48,7 @@ public class lista_preferiti extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					checkAdmin = DAELIMINARE.controllaUtente.checkUserAdmin(conn, user);
+					checkAdmin = controller.ControlloAdmin(controller.UserData());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

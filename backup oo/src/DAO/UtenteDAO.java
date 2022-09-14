@@ -12,8 +12,8 @@ public interface UtenteDAO {
     boolean checkLoginAdmin(Utente U) throws SQLException;
     boolean checkIfAdmin(Utente U) throws SQLException;
     void registra_utente(String user_name, String user_password);
-    void utenteLoggato(int id, String nome, String password, boolean admin);
+    Utente utenteLoggato();
     String riempiNome(String nome);
-    void UserData();
+   
     
 }

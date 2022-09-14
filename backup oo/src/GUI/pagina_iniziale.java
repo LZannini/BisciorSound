@@ -29,7 +29,6 @@ public class pagina_iniziale extends JFrame{
     String check_username = " ";
     Connection conn = null;
     boolean tryLogin = false;
-    static Utente U;
 
 	/**
 	 * Create the application.
@@ -91,7 +90,6 @@ public class pagina_iniziale extends JFrame{
 				
 				else {
 				JOptionPane.showMessageDialog(null, "Login effettuato con successo!");
-                U = new Utente(20, nomeLogin, passwordLogin, false);
 				home_utente home = new home_utente(controller, start_frame);
 				home.setVisible(true);
 				start_frame.dispose();
@@ -142,9 +140,4 @@ public class pagina_iniziale extends JFrame{
 	public static String getPasswordLogin() {
 		return passwordLogin;
 	}
-	
-	public static Utente getUtente() {
-		return U;
-	}
-	
 }
