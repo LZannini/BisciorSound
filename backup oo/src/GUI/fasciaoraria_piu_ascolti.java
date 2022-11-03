@@ -23,6 +23,7 @@ public class fasciaoraria_piu_ascolti extends JFrame {
 	 * Create the frame.
 	 */
 	public fasciaoraria_piu_ascolti(Controller c, JFrame frameChiamante) {
+		controller = c;
 		setTitle("Fascia oraria in cui un utente ha effettuato pi\u00F9 ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

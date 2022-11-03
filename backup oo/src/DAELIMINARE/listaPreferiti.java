@@ -14,7 +14,7 @@ public class listaPreferiti {
 		 
 		 
 			String nomeLogin = GUI.pagina_iniziale.getNomeLogin();
-			String nomeLoginAdmin = GUI.adminLogin_frame.getNomeLoginAdmin();
+			String nomeLoginAdmin = GUI.admin_login.getNomeLoginAdmin();
 			String query = "select nome from traccia, utente, preferiti where preferiti.id_traccia = traccia.id_track and preferiti.id_utente = utente.user_id and (utente.username = '" +nomeLogin+ "' or utente.username = '" +nomeLoginAdmin+ "') order by traccia.nome";
 			DefaultListModel model = new DefaultListModel();  
 
@@ -69,7 +69,7 @@ public class listaPreferiti {
 		 
 		 
 			String nomeLogin = GUI.pagina_iniziale.getNomeLogin();
-			String nomeLoginAdmin = GUI.adminLogin_frame.getNomeLoginAdmin();
+			String nomeLoginAdmin = GUI.admin_login.getNomeLoginAdmin();
 			String query = "select nome from cover, utente, preferiti_cover where preferiti_cover.id_cover = cover.id_cover and preferiti_cover.id_utente = utente.user_id and (utente.username = '" +nomeLogin+ "' or utente.username = '" +nomeLoginAdmin+ "') order by cover.nome";
 			DefaultListModel model = new DefaultListModel();  
 

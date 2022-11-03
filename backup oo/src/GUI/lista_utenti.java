@@ -41,7 +41,6 @@ public class lista_utenti extends JFrame {
 	 */
 	public lista_utenti(Controller c, JFrame frameChiamante) {
 		frame = this;
-		c = new Controller();
 		controller = c;
 		setTitle("Lista Utenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -10,7 +10,7 @@ import ImplementazioniPG_DAO.*;
 import ConfigurazioneDB.ConnessioneDB;
 
 public class Controller {
-	
+
 	Album Al;
 	Ascolto As;
 	Cover C;
@@ -18,54 +18,59 @@ public class Controller {
 	PreferitiCover PC;
 	Traccia T;
 	Utente U;
-	
-    public Controller() {
+
+	public Controller() {
 
 	}
-    
-    public Utente UserData() {
-    	UtenteDAO U = new UtenteImplementazionePG_DAO();
-    	return U.utenteLoggato();
-    }
-    
-    public boolean ControlloAdmin(Utente U) throws SQLException {
-    	UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
-    	return U_DAO.checkIfAdmin(U);
-    }
-	
+
+	public void registraUtente() {
+		UtenteDAO UDAO = new UtenteImplementazionePG_DAO();
+		UDAO.registra_utente(GUI.registrazione.getNomeReg(), GUI.registrazione.getPasswordReg());
+	}
+
+	public Utente UserData() {
+		UtenteDAO U = new UtenteImplementazionePG_DAO();
+		return U.utenteLoggato();
+	}
+
+	public boolean ControlloAdmin(Utente U) throws SQLException {
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		return U_DAO.checkIfAdmin(U);
+	}
+
 	public void ListaAlbum(JList lista) {
 		AlbumDAO A = new AlbumImplementazionePG_DAO();
 		A.mostra_album(lista);
 	}
-	
+
 	public void ListaUtenti(JList lista) {
 		UtenteDAO U = new UtenteImplementazionePG_DAO();
 		U.mostra_utenti(lista);
 	}
-	
+
 	public void ListaAdmin(JList lista) {
 		UtenteDAO U = new UtenteImplementazionePG_DAO();
 		U.mostra_admin(lista);
 	}
-	
+
 	public void ListaTracce(JList lista) {
 		TracciaDAO T = new TracceImplementazionePG_DAO();
 		T.mostra_tracce(lista);
 	}
-	
+
 	public void ListaCover(JList lista) {
 		CoverDAO C = new CoverImplementazionePG_DAO();
 		C.mostra_cover(lista);
 	}
-	
-	public void ListaPreferiti(JList lista) {
+
+	public void ListaPreferiti(JList lista, Traccia T, Utente U) {
 		PreferitiDAO P = new PreferitiImplementazionePG_DAO();
 		P.mostra_preferiti(lista, T, U);
 	}
-   	
+
 	public void ListaPreferitiCover(JList lista) {
 		PreferitiCoverDAO PC = new PreferitiCoverImplementazionePG_DAO();
-		PC.mostra_preferiti_cover(lista, C, U);		
+		PC.mostra_preferiti_cover(lista, C, U);
 	}
 
 	public Album getAl() {
@@ -122,8 +127,6 @@ public class Controller {
 
 	public void setU(Utente u) {
 		this.U = u;
-	}	
+	}
 
-	
 }
-

@@ -36,6 +36,7 @@ public class lista_preferiti_cover extends JFrame {
 	 * @throws SQLException 
 	 */
 	public lista_preferiti_cover(Controller c, JFrame frameChiamante) throws SQLException {
+		controller = c;
 		setTitle("Lista Preferiti (Cover)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

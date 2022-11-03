@@ -12,11 +12,11 @@ import Model.*;
 import DAO.CoverDAO;
 
 public class CoverImplementazionePG_DAO implements CoverDAO {
-	
-    private Connection conn;
-	
-    public CoverImplementazionePG_DAO() {
-		
+
+	private Connection conn;
+
+	public CoverImplementazionePG_DAO() {
+
 		try {
 			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 		} catch (SQLException e) {
@@ -24,15 +24,15 @@ public class CoverImplementazionePG_DAO implements CoverDAO {
 			e.printStackTrace();
 		}
 	}
-    
-    public JList mostra_cover(JList lista) {
-		
-		String query = "select nome from cover order by nome";
-		DefaultListModel model = new DefaultListModel();  
 
-	    Statement st = null;
-	    ResultSet rs = null;
-		
+	public JList mostra_cover(JList lista) {
+
+		String query = "select nome from cover order by nome";
+		DefaultListModel model = new DefaultListModel();
+
+		Statement st = null;
+		ResultSet rs = null;
+
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
@@ -40,32 +40,31 @@ public class CoverImplementazionePG_DAO implements CoverDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-	    try {
-			while (rs.next())
-			{
-			    String itemCodeNome = null;
+
+		try {
+			while (rs.next()) {
+				String itemCodeNome = null;
 				try {
 					itemCodeNome = rs.getString("nome");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}  
-			    model.addElement(itemCodeNome);  
+				}
+				model.addElement(itemCodeNome);
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    lista.setModel(model);
+		lista.setModel(model);
 
-	    try {
+		try {
 			rs.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    try {
+		try {
 			st.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block

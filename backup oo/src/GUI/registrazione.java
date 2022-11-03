@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class registrazione extends JFrame {
 
@@ -23,8 +24,8 @@ public class registrazione extends JFrame {
 	private JTextField utenteRG_field;
 	private JPasswordField passwordRG_field;
 	private JPasswordField CpasswordRG_field;
-	String utente_rg= " ";
-	String password_rg= " ";
+	static String utente_rg= " ";
+	static String password_rg= " ";
 	String cpassword_rg= " ";
 
 
@@ -32,6 +33,7 @@ public class registrazione extends JFrame {
 	 * Create the frame.
 	 */
 	public registrazione(Controller c, JFrame frameChiamante) {
+		controller = c;
 		setTitle("Registrazione");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -75,8 +77,12 @@ public class registrazione extends JFrame {
 				utente_rg = utenteRG_field.getText();
 				password_rg = passwordRG_field.getText();
 				cpassword_rg = CpasswordRG_field.getText();
-				if (cpassword_rg.equals(password_rg)) {
-					DAELIMINARE.registration.inserisci_utente(utente_rg, password_rg);
+				if (utente_rg.length() == 0 || password_rg.length() == 0) {
+					JOptionPane.showMessageDialog(null, "Attenzione, bisogna riempire tutti i campi!");
+					return;
+				}
+				else if (cpassword_rg.equals(password_rg)) {
+					controller.registraUtente();
 					JOptionPane.showMessageDialog(null, "L'utente "+utente_rg+" è stato registrato!");
 					dispose();
 					
@@ -100,16 +106,20 @@ public class registrazione extends JFrame {
 		});
 		back_button.setBounds(87, 211, 218, 21);
 		contentPane.add(back_button);
+		
+		JLabel img_label = new JLabel("");
+		img_label.setIcon(new ImageIcon(registrazione.class.getResource("/immagini/icona_registrazione.png")));
+		img_label.setBounds(209, 0, 411, 250);
+		contentPane.add(img_label);
 	}
 	
-	public static String getNomeReg(String utente_rg){
+	public static String getNomeReg(){
 		
 			return utente_rg;
 	}
 	
-	public static String getPasswordReg(String password_rg) {
+	public static String getPasswordReg() {
 		
 		    return password_rg;
 	}
-		
 }

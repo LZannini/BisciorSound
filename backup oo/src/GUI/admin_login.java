@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 
 public class admin_login extends JFrame {
 
@@ -32,6 +33,7 @@ public class admin_login extends JFrame {
 	 * Create the frame.
 	 */
 	public admin_login(Controller c, JFrame frameChiamante) {
+		controller = c;
 		setTitle("Admin Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -102,6 +104,11 @@ public class admin_login extends JFrame {
 		});
 		back_button.setBounds(96, 207, 191, 21);
 		contentPane.add(back_button);
+		
+		JLabel img_label = new JLabel("New label");
+		img_label.setIcon(new ImageIcon(admin_login.class.getResource("/immagini/icona_admin.jpg")));
+		img_label.setBounds(0, 0, 445, 261);
+		contentPane.add(img_label);
 	}
 
 	public static String getNomeLoginAdmin() {

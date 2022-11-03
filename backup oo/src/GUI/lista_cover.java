@@ -34,7 +34,6 @@ public class lista_cover extends JFrame {
 	 */
 	public lista_cover(Controller c, JFrame frameChiamante) {
 		frame = this;
-		c = new Controller();
 		controller = c;
 		setTitle("Lista Cover");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

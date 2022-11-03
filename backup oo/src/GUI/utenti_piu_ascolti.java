@@ -23,6 +23,7 @@ public class utenti_piu_ascolti extends JFrame {
 	 * Create the frame.
 	 */
 	public utenti_piu_ascolti(Controller c, JFrame frameChiamante) {
+		controller = c;
 		setTitle("Utenti che hanno effettuato più ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

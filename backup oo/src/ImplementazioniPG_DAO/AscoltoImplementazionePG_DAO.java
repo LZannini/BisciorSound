@@ -7,11 +7,11 @@ import DAO.AscoltoDAO;
 import Model.*;
 
 public class AscoltoImplementazionePG_DAO implements AscoltoDAO {
-	
-    private Connection conn;
-	
-    public AscoltoImplementazionePG_DAO() {
-		
+
+	private Connection conn;
+
+	public AscoltoImplementazionePG_DAO() {
+
 		try {
 			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 		} catch (SQLException e) {

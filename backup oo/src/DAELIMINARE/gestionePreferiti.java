@@ -11,7 +11,7 @@ public class gestionePreferiti {
 			PreparedStatement ps  = null;
 		    Connection conn = null;
 		    String ut1 = GUI.pagina_iniziale.getNomeLogin();
-		    String ut2 = GUI.adminLogin_frame.getNomeLoginAdmin();
+		    String ut2 = GUI.admin_login.getNomeLoginAdmin();
 			
 			String query = "INSERT INTO preferiti(id_utente, id_traccia) SELECT user_id, id_track from utente, traccia where traccia.nome = ? and (utente.username = ? or utente.username = ?)";
 			
@@ -53,7 +53,7 @@ public class gestionePreferiti {
 			PreparedStatement ps  = null;
 		    Connection conn = null;
 		    String ut1 = GUI.pagina_iniziale.getNomeLogin();
-		    String ut2 = GUI.adminLogin_frame.getNomeLoginAdmin();
+		    String ut2 = GUI.admin_login.getNomeLoginAdmin();
 			
 			String query = "delete from preferiti where id_utente = (select user_id from utente where (username = ? or username = ?)) and id_traccia = (select id_track from traccia where nome = ?)";
 			
@@ -95,7 +95,7 @@ public class gestionePreferiti {
 			PreparedStatement ps  = null;
 		    Connection conn = null;
 		    String ut1 = GUI.pagina_iniziale.getNomeLogin();
-		    String ut2 = GUI.adminLogin_frame.getNomeLoginAdmin();
+		    String ut2 = GUI.admin_login.getNomeLoginAdmin();
 			
 			String query = "INSERT INTO preferiti_cover(id_utente, id_cover) SELECT user_id, id_cover from utente, cover where cover.nome = ? and (utente.username = ? or utente.username = ?)";
 			
@@ -136,7 +136,7 @@ public class gestionePreferiti {
 			PreparedStatement ps  = null;
 		    Connection conn = null;
 		    String ut1 = GUI.pagina_iniziale.getNomeLogin();
-		    String ut2 = GUI.adminLogin_frame.getNomeLoginAdmin();
+		    String ut2 = GUI.admin_login.getNomeLoginAdmin();
 			
 			String query = "delete from preferiti_cover where id_utente = (select user_id from utente where (username = ? or username = ?)) and id_cover = (select id_cover from cover where nome= ?)";
 			

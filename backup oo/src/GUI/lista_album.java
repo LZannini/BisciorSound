@@ -31,7 +31,6 @@ public class lista_album extends JFrame {
 	 */
 	public lista_album(Controller c, JFrame frameChiamante) {
 		frame = this;
-		c = new Controller();
 		controller = c;
 		frame.setVisible(true);
 		setTitle("Lista Album");

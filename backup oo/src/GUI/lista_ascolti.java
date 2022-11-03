@@ -33,7 +33,6 @@ public class lista_ascolti extends JFrame {
 	 */
 	public lista_ascolti(Controller c, JFrame frameChiamante) {
 		frame = this;
-		c = new Controller();
 		controller = c;
 		setTitle("Ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -33,7 +33,6 @@ public class lista_tracce extends JFrame {
 	 */
 	public lista_tracce(Controller c, JFrame frameChiamante) {
 		frame = this;
-		c = new Controller();
 		controller = c;
 		setTitle("Lista Tracce");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

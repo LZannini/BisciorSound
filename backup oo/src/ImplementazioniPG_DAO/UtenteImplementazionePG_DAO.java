@@ -11,17 +11,19 @@ import java.sql.Statement;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import DAO.UtenteDAO;
+import GUI.admin_login;
 import GUI.pagina_iniziale;
 
 public class UtenteImplementazionePG_DAO implements UtenteDAO {
-	
-    private Connection conn;
-    private Utente U;
-	
-    public UtenteImplementazionePG_DAO() {
-		
+
+	private Connection conn;
+	private Utente U;
+
+	public UtenteImplementazionePG_DAO() {
+
 		try {
 			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 		} catch (SQLException e) {
@@ -29,15 +31,15 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			e.printStackTrace();
 		}
 	}
-    
-    public JList mostra_admin(JList lista) {
-		
+
+	public JList mostra_admin(JList lista) {
+
 		String query = "select username from utente where admin = true order by username";
-		DefaultListModel model = new DefaultListModel();  
+		DefaultListModel model = new DefaultListModel();
 
-	    Statement st = null;
-	    ResultSet rs = null;
-		
+		Statement st = null;
+		ResultSet rs = null;
+
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
@@ -45,39 +47,38 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-	    try {
-			while (rs.next())
-			{
-			    String itemCode = null;
+
+		try {
+			while (rs.next()) {
+				String itemCode = null;
 				try {
 					itemCode = rs.getString("username");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}  
-			    model.addElement(itemCode);  
+				}
+				model.addElement(itemCode);
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    lista.setModel(model);
+		lista.setModel(model);
 
-	    try {
+		try {
 			rs.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    try {
+		try {
 			st.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    
-	    try {
+
+		try {
 			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,15 +86,15 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 		}
 		return lista;
 	}
-	
+
 	public JList mostra_utenti(JList lista) {
-		
-		String query = "select username from utente where admin = false order by username";
-		DefaultListModel model = new DefaultListModel();  
 
-	    Statement st = null;
-	    ResultSet rs = null;
-		
+		String query = "select username from utente where admin = false order by username";
+		DefaultListModel model = new DefaultListModel();
+
+		Statement st = null;
+		ResultSet rs = null;
+
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(query);
@@ -101,185 +102,181 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-	    try {
-			while (rs.next())
-			{
-			    String itemCode = null;
+
+		try {
+			while (rs.next()) {
+				String itemCode = null;
 				try {
 					itemCode = rs.getString("username");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}  
-			    model.addElement(itemCode);  
+				}
+				model.addElement(itemCode);
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    lista.setModel(model);
+		lista.setModel(model);
 
-	    try {
+		try {
 			rs.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    try {
+		try {
 			st.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    
-	    try {
+
+		try {
 			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
+
 		return lista;
-		
+
 	}
-	
+
 	public boolean checkLogin(Utente U) throws SQLException {
 
-        String login = " ";
-        ResultSet rs = null;
+		String login = " ";
+		ResultSet rs = null;
 
-        do {
-        	login = "select * from utente where username = '"+U.getUsername()+"' and password = '"+U.getPassword()+"' and admin = false" ;
-        			
-        	PreparedStatement ps = conn.prepareStatement(login);
-            
-            rs = ps.executeQuery();
-            
-            if (rs.next()) return true;
-            else return false;
-        }while (!rs.next());
-        
-    }  
-	
-	public Utente DatiUtente(String username, String password)
-	{
+		do {
+			login = "select * from utente where username = '" + U.getUsername() + "' and password = '" + U.getPassword()
+					+ "' and admin = false";
+
+			PreparedStatement ps = conn.prepareStatement(login);
+
+			rs = ps.executeQuery();
+
+			if (rs.next())
+				return true;
+			else
+				return false;
+		} while (!rs.next());
+
+	}
+
+	public Utente DatiUtente(String username, String password) {
 		PreparedStatement login;
 		try {
-			login = conn.prepareStatement("SELECT * FROM Utente WHERE username ='"+username+"' AND password = '"+password+"'");
-			
-		ResultSet rs = login.executeQuery();
-		while(rs.next()) {
-			U = new Utente(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"), rs.getBoolean("admin"));
-		}
-		rs.close();
-		return U;
-		
-		} 
-		catch (SQLException e) {
-	
+			login = conn.prepareStatement(
+					"SELECT * FROM Utente WHERE username ='" + username + "' AND password = '" + password + "'");
+
+			ResultSet rs = login.executeQuery();
+			while (rs.next()) {
+				U = new Utente(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"),
+						rs.getBoolean("admin"));
+			}
+			rs.close();
+			return U;
+
+		} catch (SQLException e) {
+
 			e.printStackTrace();
 			return null;
 
 		}
 	}
-	
+
 	public Utente utenteLoggato() {
-		
-		
+
 		int id = 0;
 		String nome = null, password = null;
 		boolean admin = false;
 		Utente U = new Utente(id, nome, password, admin);
 
 		try {
-		     Statement st = conn.createStatement();
-		     ResultSet rs = st.executeQuery("select * from utente where username = '"+pagina_iniziale.getNomeLogin()+"'");
-		     while (rs.next()) {
-		        id = rs.getInt(id);
-		        nome = rs.getString(nome);
-		        password = rs.getString(password);
-		        admin = rs.getBoolean(password);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery("select * from utente where username = '" + pagina_iniziale.getNomeLogin()
+					+ "' or username = '" + admin_login.getNomeLoginAdmin() + "'");
+			while (rs.next()) {
+				U = new Utente(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"),
+						rs.getBoolean("admin"));
+			}
+			rs.close();
+			st.close();
+			return U;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-		        U = new Utente(id, nome, password, admin);
-		        }
-		     rs.close();
-		     st.close();
-		  } catch (SQLException ex) {
-
-		    }
-		U.setAdmin(admin);
-		U.setPassword(password);
-		U.setUser_id(id);
-		U.setUsername(password);
-		
-		return U;
-    } 
-	
-    public String riempiNome(String nome) {
-
+	public String riempiNome(String nome) {
 
 		try {
-		     Statement st = conn.createStatement();
-		     ResultSet rs = st.executeQuery("select * from utente where username = '"+pagina_iniziale.getNomeLogin()+"'");
-		     while (rs.next()) {
-		        
-		        nome = rs.getString(nome);
+			Statement st = conn.createStatement();
+			ResultSet rs = st
+					.executeQuery("select * from utente where username = '" + pagina_iniziale.getNomeLogin() + "'");
+			while (rs.next()) {
 
-		        }
-		     rs.close();
-		     st.close();
-		  } catch (SQLException ex) {
+				nome = rs.getString(nome);
 
-		    }
-				return nome;
-		
-    }
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException ex) {
+
+		}
+		return nome;
+
+	}
 
 	public boolean checkLoginAdmin(Utente U) throws SQLException {
 
-        String login = " ";
-        ResultSet rs = null;
+		String login = " ";
+		ResultSet rs = null;
 
-        do {
-        	login = "select * from utente where username = '"+U.getUsername()+"' and password = '"+U.getPassword()+"' and admin = true" ;
-        			
-        	PreparedStatement ps = conn.prepareStatement(login);
+		do {
+			login = "select * from utente where username = '" + U.getUsername() + "' and password = '" + U.getPassword()
+					+ "' and admin = true";
 
-            rs = ps.executeQuery();
-            
-            if (rs.next()) return true;
-            else return false;
-        }while (!rs.next());
-    }
-	
+			PreparedStatement ps = conn.prepareStatement(login);
+
+			rs = ps.executeQuery();
+
+			if (rs.next())
+				return true;
+			else
+				return false;
+		} while (!rs.next());
+	}
+
 	public boolean checkIfAdmin(Utente U) throws SQLException {
 
-        String query = " ";
-        ResultSet rs = null;
+		String query = " ";
+		ResultSet rs = null;
 
-        do {
-        	query = "select * from utente where username = '"+U.getUsername()+"' and admin = true" ;
-        			
-        	PreparedStatement ps = conn.prepareStatement(query);
-            
-            rs = ps.executeQuery();
-            
-            if (rs.next()) return true;
-            else return false;
-        }while (!rs.next());
-        
-    } 
-	
+		do {
+			query = "select * from utente where username = '" + U.getUsername() + "' and admin = true";
+
+			PreparedStatement ps = conn.prepareStatement(query);
+
+			rs = ps.executeQuery();
+
+			if (rs.next())
+				return true;
+			else
+				return false;
+		} while (!rs.next());
+
+	}
+
 	public void registra_utente(String nome_ut, String password) {
 
-		PreparedStatement ps  = null;
-		
-		nome_ut = GUI.registrazione.getNomeReg(nome_ut);
-		password = GUI.registrazione.getPasswordReg(password);
-		
+		PreparedStatement ps = null;
+
 		String query = "INSERT INTO utente (username, password, admin) VALUES (?, ?, false)";
-		
+
 		try {
 			conn = ConfigurazioneDB.ConnessioneDB.getInstance().getConnection();
 			ps = conn.prepareStatement(query);
@@ -287,7 +284,7 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		try {
 			ps.setString(1, nome_ut);
 			ps.setString(2, password);
@@ -295,14 +292,14 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			ps.setString(2, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			ps.execute();
 		} catch (SQLException e1) {
@@ -310,18 +307,19 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			e1.printStackTrace();
 		}
 
-	    try {
+		try {
 			ps.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    
-	    try {
+
+		try {
 			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 }

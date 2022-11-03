@@ -17,8 +17,7 @@ public class registration {
 			PreparedStatement ps  = null;
 		    Connection conn = null;
 			
-			nome_ut = GUI.registration_frame.getNomeReg(nome_ut);
-			password = GUI.registration_frame.getPasswordReg(password);
+			
 			
 			String query = "INSERT INTO utente (username, password, admin) VALUES (?, ?, false)";
 			

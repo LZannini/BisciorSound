@@ -18,19 +18,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class home_utente extends JFrame {
 	
     JFrame frame;
 	private JPanel contentPane;
 	private Controller controller;
-	String nomeLogin = " ";
 	Utente U;
 
 	/**
 	 * Create the frame.
 	 */
 	public home_utente(Controller c, JFrame frameChiamante) {
+		controller = c;
 		frame = this;
 		c = new Controller();
 		controller = c;
@@ -87,11 +88,17 @@ public class home_utente extends JFrame {
 			}
 		});
 		menuBar.add(button_3);
-		nomeLogin = pagina_iniziale.getNomeLogin();
-		JLabel label_saluto = new JLabel("Ciao, "+nomeLogin+"!");
-		label_saluto.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-		label_saluto.setBounds(264, 241, 170, 20);
-		contentPane.add(label_saluto);
+
+		U = controller.UserData();
+		JLabel label_user = new JLabel(U.getUsername());
+		label_user.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+		label_user.setBounds(40, 230, 162, 20);
+		contentPane.add(label_user);
+		
+		JLabel img_label = new JLabel("");
+		img_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_utente.png")));
+		img_label.setBounds(10, 193, 85, 94);
+		contentPane.add(img_label);
 		
 	}
 }

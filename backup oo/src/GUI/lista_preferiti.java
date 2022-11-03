@@ -32,7 +32,6 @@ public class lista_preferiti extends JFrame {
 	 */
 	public lista_preferiti(Controller c, JFrame frameChiamante) {
 		frame = this;
-		c = new Controller();
 		controller = c;
 		setTitle("Lista Preferiti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +78,7 @@ public class lista_preferiti extends JFrame {
 		scrollPane.setBounds(10, 11, 315, 210);
 		contentPane.add(scrollPane);	
 		
-		controller.ListaPreferiti(listaPreferiti);
+		controller.ListaPreferiti(listaPreferiti, null, controller.UserData());
 		
 		JButton remPreferiti_bttn = new JButton("Rimuovi ");
 		remPreferiti_bttn.addMouseListener(new MouseAdapter() {

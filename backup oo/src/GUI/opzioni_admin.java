@@ -27,6 +27,7 @@ public class opzioni_admin extends JFrame {
 	 * Create the frame.
 	 */
 	public opzioni_admin(Controller c, JFrame frameChiamante) {
+		controller = c;
 		setTitle("Opzioni Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

@@ -2,6 +2,8 @@ package GUI;
 
 import java.awt.BorderLayout;
 import Controller.*;
+import Model.Utente;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,18 +17,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class home_admin extends JFrame {
 	
     JFrame frame;
 	private JPanel contentPane;
 	private Controller controller;
-    String nomeLoginAdmin = " ";
+    Utente U;
 
 	/**
 	 * Create the frame.
 	 */
 	public home_admin(Controller c, JFrame frameChiamante) {
+		controller = c;
 		setTitle("Home - Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -96,10 +100,15 @@ public class home_admin extends JFrame {
 		btnNewButton.setBounds(145, 196, 130, 21);
 		contentPane.add(btnNewButton);
 		
-	    nomeLoginAdmin = admin_login.getNomeLoginAdmin();
-		JLabel label_saluto = new JLabel("Ciao, "+nomeLoginAdmin+"!");
-		label_saluto.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-		label_saluto.setBounds(282, 241, 170, 20);
-		contentPane.add(label_saluto);
+	    U = controller.UserData();
+		JLabel label_user = new JLabel(U.getUsername());
+		label_user.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+		label_user.setBounds(40, 230, 162, 20);
+		contentPane.add(label_user);
+		
+		JLabel img_label = new JLabel("");
+		img_label.setIcon(new ImageIcon(home_admin.class.getResource("/immagini/icona_utente.png")));
+		img_label.setBounds(10, 193, 85, 94);
+		contentPane.add(img_label);
 	}
 }
