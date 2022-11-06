@@ -1,6 +1,8 @@
 package GUI;
 import java.awt.BorderLayout;
 import Controller.*;
+import Model.Utente;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -67,9 +69,10 @@ public class admin_login extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				nomeLoginAdmin = adminusername_field.getText();
 				passwordLoginAdmin = adminpassword_field.getText();
+				Utente U = controller.userData();
 				
 				try {
-					checkLogin = DAELIMINARE.checkLoginAdmin.checkCredentialsAdmin(conn, nomeLoginAdmin, passwordLoginAdmin);
+					checkLogin = controller.controllaLoginAdmin(U);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

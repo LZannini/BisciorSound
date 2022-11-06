@@ -26,7 +26,7 @@ public class PreferitiCoverImplementazionePG_DAO implements PreferitiCoverDAO {
 		}
 	}
 
-	public JList mostra_preferiti_cover(JList lista, Cover C, Utente U) {
+	public JList mostra_preferiti_cover(JList lista, Utente U) {
 
 		String query = "select nome from cover, utente, preferiti_cover where preferiti_cover.id_cover = cover.id_cover and preferiti_cover.id_utente = '"
 				+ U.getUser_id() + "' and utente.username = '" + U.getUsername() + "' order by cover.nome";

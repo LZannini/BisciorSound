@@ -5,11 +5,14 @@ import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -48,6 +51,11 @@ public class fasciaoraria_piu_ascolti extends JFrame {
 		JList listaFasciaOraria = new JList();
 		listaFasciaOraria.setBounds(190, 235, 160, 197);
 		contentPane.add(listaFasciaOraria);
+		
+		JLabel imgSound_label = new JLabel("");
+		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgSound_label.setBounds(10, 0, 476, 261);
+		contentPane.add(imgSound_label);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 414, 210);

@@ -3,12 +3,8 @@ package GUI;
 import Model.*;
 import java.awt.EventQueue;
 import java.sql.*;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-
-import DAELIMINARE.checkLogin;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -77,9 +73,10 @@ public class pagina_iniziale extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				nomeLogin = username_textField.getText();
 				passwordLogin = password_textField.getText();
+				Utente U = controller.userData();
 
 				try {
-					tryLogin = DAELIMINARE.checkLogin.checkCredentials(conn, nomeLogin, passwordLogin);
+					tryLogin = controller.controllaLoginUtente(U);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

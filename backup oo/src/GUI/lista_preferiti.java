@@ -4,18 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import Controller.*;
+import Model.Utente;
 
 public class lista_preferiti extends JFrame {
 
@@ -33,7 +37,7 @@ public class lista_preferiti extends JFrame {
 	public lista_preferiti(Controller c, JFrame frameChiamante) {
 		frame = this;
 		controller = c;
-		setTitle("Lista Preferiti");
+		setTitle("Lista Preferiti Tracce");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,7 +51,7 @@ public class lista_preferiti extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					checkAdmin = controller.ControlloAdmin(controller.UserData());
+					checkAdmin = controller.controllaLoginAdmin(controller.userData());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -78,7 +82,8 @@ public class lista_preferiti extends JFrame {
 		scrollPane.setBounds(10, 11, 315, 210);
 		contentPane.add(scrollPane);	
 		
-		controller.ListaPreferiti(listaPreferiti, null, controller.UserData());
+		Utente U = controller.userData();
+		controller.listaPreferiti(listaPreferiti, U);
 		
 		JButton remPreferiti_bttn = new JButton("Rimuovi ");
 		remPreferiti_bttn.addMouseListener(new MouseAdapter() {
@@ -113,8 +118,13 @@ public class lista_preferiti extends JFrame {
 				dispose();
 			}
 		});
-		button_cover.setBounds(296, 231, 128, 21);
+		button_cover.setBounds(296, 232, 128, 21);
 		contentPane.add(button_cover);
+		
+		JLabel imgSound_label = new JLabel("");
+		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgSound_label.setBounds(10, 0, 476, 261);
+		contentPane.add(imgSound_label);
 		
 		scrollPane.setViewportView(listaPreferiti);
 	}

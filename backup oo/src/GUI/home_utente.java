@@ -72,7 +72,7 @@ public class home_utente extends JFrame {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lista_ascolti ascolti_frame = new lista_ascolti(controller, frameChiamante);
+				tabella_ascoltiTracce ascolti_frame = new tabella_ascoltiTracce(controller, frameChiamante);
 				ascolti_frame.setVisible(true);
 				dispose();
 			}
@@ -89,7 +89,7 @@ public class home_utente extends JFrame {
 		});
 		menuBar.add(button_3);
 
-		U = controller.UserData();
+		U = controller.userData();
 		JLabel label_user = new JLabel(U.getUsername());
 		label_user.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		label_user.setBounds(40, 230, 162, 20);
@@ -99,6 +99,11 @@ public class home_utente extends JFrame {
 		img_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_utente.png")));
 		img_label.setBounds(10, 193, 85, 94);
 		contentPane.add(img_label);
+		
+		JLabel imgSound_label = new JLabel("");
+		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgSound_label.setBounds(0, 0, 434, 261);
+		contentPane.add(imgSound_label);
 		
 	}
 }

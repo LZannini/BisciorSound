@@ -11,8 +11,8 @@ import ConfigurazioneDB.ConnessioneDB;
 
 public class Controller {
 
-	Album Al;
-	Ascolto As;
+	Album A;
+	AscoltoTraccia AT;
 	Cover C;
 	Preferiti P;
 	PreferitiCover PC;
@@ -22,111 +22,72 @@ public class Controller {
 	public Controller() {
 
 	}
+	
+	public void mostra_ascoltiTracce(JTable table, Utente U) {
+		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
+		AT_DAO.mostra_ascoltiTracce(table, U);
+	}
+	
+	public boolean controllaLoginAdmin(Utente U) throws SQLException {
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		return U_DAO.checkLoginAdmin(U);
+	}
+	
+	public boolean controllaLoginUtente(Utente U) throws SQLException {
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		return U_DAO.checkLogin(U);
+	}
 
 	public void registraUtente() {
-		UtenteDAO UDAO = new UtenteImplementazionePG_DAO();
-		UDAO.registra_utente(GUI.registrazione.getNomeReg(), GUI.registrazione.getPasswordReg());
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		U_DAO.registra_utente(GUI.registrazione.getNomeReg(), GUI.registrazione.getPasswordReg());
 	}
 
-	public Utente UserData() {
-		UtenteDAO U = new UtenteImplementazionePG_DAO();
-		return U.utenteLoggato();
+	public Utente userData() {
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		return U_DAO.utenteLoggato();
 	}
 
-	public boolean ControlloAdmin(Utente U) throws SQLException {
+	public boolean controlloAdmin(Utente U) throws SQLException {
 		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
 		return U_DAO.checkIfAdmin(U);
 	}
 
-	public void ListaAlbum(JList lista) {
-		AlbumDAO A = new AlbumImplementazionePG_DAO();
-		A.mostra_album(lista);
+	public void listaAlbum(JList lista) {
+		AlbumDAO Al_DAO = new AlbumImplementazionePG_DAO();
+		Al_DAO.mostra_album(lista);
 	}
 
-	public void ListaUtenti(JList lista) {
-		UtenteDAO U = new UtenteImplementazionePG_DAO();
-		U.mostra_utenti(lista);
+	public void listaUtenti(JList lista) {
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		U_DAO.mostra_utenti(lista);
 	}
 
-	public void ListaAdmin(JList lista) {
-		UtenteDAO U = new UtenteImplementazionePG_DAO();
-		U.mostra_admin(lista);
+	public void listaAdmin(JList lista) {
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		U_DAO.mostra_admin(lista);
 	}
 
-	public void ListaTracce(JList lista) {
-		TracciaDAO T = new TracceImplementazionePG_DAO();
-		T.mostra_tracce(lista);
+	public void listaTracce(JList lista) {
+		TracciaDAO T_DAO = new TracceImplementazionePG_DAO();
+		T_DAO.mostra_tracce(lista);
 	}
 
-	public void ListaCover(JList lista) {
-		CoverDAO C = new CoverImplementazionePG_DAO();
-		C.mostra_cover(lista);
+	public void listaCover(JList lista) {
+		CoverDAO C_DAO = new CoverImplementazionePG_DAO();
+		C_DAO.mostra_cover(lista);
 	}
 
-	public void ListaPreferiti(JList lista, Traccia T, Utente U) {
-		PreferitiDAO P = new PreferitiImplementazionePG_DAO();
-		P.mostra_preferiti(lista, T, U);
+	public void listaPreferiti(JList lista, Utente U) {
+		PreferitiDAO P_DAO = new PreferitiImplementazionePG_DAO();
+		P_DAO.mostra_preferiti(lista, U);
 	}
 
-	public void ListaPreferitiCover(JList lista) {
-		PreferitiCoverDAO PC = new PreferitiCoverImplementazionePG_DAO();
-		PC.mostra_preferiti_cover(lista, C, U);
+	public void listaPreferitiCover(JList lista, Utente U) {
+		PreferitiCoverDAO PC_DAO = new PreferitiCoverImplementazionePG_DAO();
+		PC_DAO.mostra_preferiti_cover(lista, U);
 	}
 
-	public Album getAl() {
-		return Al;
-	}
 
-	public void setAl(Album al) {
-		this.Al = al;
-	}
-
-	public Ascolto getAs() {
-		return As;
-	}
-
-	public void setAs(Ascolto as) {
-		this.As = as;
-	}
-
-	public Cover getC() {
-		return C;
-	}
-
-	public void setC(Cover c) {
-		this.C = c;
-	}
-
-	public Preferiti getP() {
-		return P;
-	}
-
-	public void setP(Preferiti p) {
-		this.P = p;
-	}
-
-	public PreferitiCover getPC() {
-		return PC;
-	}
-
-	public void setPC(PreferitiCover pC) {
-		this.PC = pC;
-	}
-
-	public Traccia getT() {
-		return T;
-	}
-
-	public void setT(Traccia t) {
-		this.T = t;
-	}
-
-	public Utente getU() {
-		return U;
-	}
-
-	public void setU(Utente u) {
-		this.U = u;
-	}
 
 }

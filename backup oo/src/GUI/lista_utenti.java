@@ -13,6 +13,7 @@ import java.awt.Color;
 
 import javax.swing.Action;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -84,7 +85,7 @@ public class lista_utenti extends JFrame {
 		bottone_admin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controller.ListaAdmin(listaAdmin);
+				controller.listaAdmin(listaAdmin);
 			}
 		});
 		bottone_admin.setBounds(180, 187, 76, 35);
@@ -94,7 +95,7 @@ public class lista_utenti extends JFrame {
 		bottone_utenti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controller.ListaUtenti(listaUtenti);
+				controller.listaUtenti(listaUtenti);
 		}
 		});
 		bottone_utenti.setBounds(180, 25, 76, 35);
@@ -103,6 +104,11 @@ public class lista_utenti extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 25, 160, 197);
 		contentPane.add(scrollPane);
+		
+		JLabel imgSound_label = new JLabel("");
+		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgSound_label.setBounds(10, 0, 476, 261);
+		contentPane.add(imgSound_label);
 		
 		scrollPane.setViewportView(listaUtenti);
 	}

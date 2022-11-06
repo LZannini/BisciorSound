@@ -5,12 +5,15 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -49,7 +52,7 @@ public class lista_cover extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					checkAdmin = controller.ControlloAdmin(controller.UserData());
+					checkAdmin = controller.controllaLoginAdmin(controller.userData());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -78,7 +81,7 @@ public class lista_cover extends JFrame {
 		scrollPane.setBounds(10, 11, 315, 210);
 		contentPane.add(scrollPane);
 		
-		controller.ListaCover(listaCover);
+		controller.listaCover(listaCover);
 		
 		JButton button_tracce = new JButton("Mostra Tracce");
 		button_tracce.addMouseListener(new MouseAdapter() {
@@ -105,6 +108,11 @@ public class lista_cover extends JFrame {
 		});
 		btnPreferiti.setBounds(335, 50, 89, 49);
 		contentPane.add(btnPreferiti);
+		
+		JLabel imgSound_label = new JLabel("");
+		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgSound_label.setBounds(10, 0, 476, 261);
+		contentPane.add(imgSound_label);
 		
 		scrollPane.setViewportView(listaCover);
 	}

@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public interface PreferitiDAO {
 
-	JList mostra_preferiti(JList lista, Traccia T, Utente U);
+	JList mostra_preferiti(JList lista, Utente U);
 
 	void aggiungi_preferito(Traccia T, Utente U);
 

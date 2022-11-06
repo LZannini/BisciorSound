@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,6 +16,8 @@ import ImplementazioniPG_DAO.PreferitiCoverImplementazionePG_DAO;
 import Model.*;
 
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,7 +40,7 @@ public class lista_preferiti_cover extends JFrame {
 	 */
 	public lista_preferiti_cover(Controller c, JFrame frameChiamante) throws SQLException {
 		controller = c;
-		setTitle("Lista Preferiti (Cover)");
+		setTitle("Lista Preferiti Cover ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,7 +54,7 @@ public class lista_preferiti_cover extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					checkAdmin = controller.ControlloAdmin(controller.UserData());;
+					checkAdmin = controller.controllaLoginAdmin(controller.userData());;
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -71,25 +74,25 @@ public class lista_preferiti_cover extends JFrame {
 		back_button.setBounds(10, 232, 85, 21);
 		contentPane.add(back_button);
 		
-		JList listaPreferiti = new JList();
-		listaPreferiti.addMouseListener(new MouseAdapter() {
+		JList listaPreferitiC = new JList();
+		listaPreferitiC.addMouseListener(new MouseAdapter() {
 		
 		});
-		listaPreferiti.setBounds(190, 235, 160, 197);
-		contentPane.add(listaPreferiti);
+		listaPreferitiC.setBounds(190, 235, 160, 197);
+		contentPane.add(listaPreferitiC);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 315, 210);
 		contentPane.add(scrollPane);	
 		
-		PreferitiCoverImplementazionePG_DAO preferitiCoverImplementazionePG_DAO = new PreferitiCoverImplementazionePG_DAO();
-		preferitiCoverImplementazionePG_DAO.mostra_preferiti_cover(listaPreferiti, C, controller.UserData());
+		Utente U = controller.userData();
+		controller.listaPreferitiCover(listaPreferitiC, U);
 		
 		JButton remPreferiti_bttn = new JButton("Rimuovi ");
 		remPreferiti_bttn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				scelta = (String) listaPreferiti.getSelectedValue();
+				scelta = (String) listaPreferitiC.getSelectedValue();
 				if (scelta == null)
 				    JOptionPane.showMessageDialog(null, "Errore. Nessuna cover scelta!");
 				else {
@@ -118,9 +121,14 @@ public class lista_preferiti_cover extends JFrame {
 				dispose();
 			}
 		});
-		button_cover.setBounds(296, 231, 128, 21);
+		button_cover.setBounds(296, 232, 128, 21);
 		contentPane.add(button_cover);
 		
-		scrollPane.setViewportView(listaPreferiti);
+		JLabel imgSound_label = new JLabel("");
+		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgSound_label.setBounds(10, 0, 476, 261);
+		contentPane.add(imgSound_label);
+		
+		scrollPane.setViewportView(listaPreferitiC);
 	}
 }

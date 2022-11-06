@@ -27,7 +27,7 @@ public class PreferitiImplementazionePG_DAO implements PreferitiDAO {
 		}
 	}
 
-	public JList mostra_preferiti(JList lista, Traccia T, Utente U) {
+	public JList mostra_preferiti(JList lista, Utente U) {
 
 		String query = "select nome from traccia, utente, preferiti where preferiti.id_utente = '" + U.getUser_id()
 				+ "' and preferiti.id_traccia = traccia.id_track and  utente.username = '" + U.getUsername()

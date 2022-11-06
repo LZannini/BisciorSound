@@ -7,7 +7,7 @@ import Model.Cover;
 
 public interface PreferitiCoverDAO {
 
-	JList mostra_preferiti_cover(JList lista, Cover C, Utente U);
+	JList mostra_preferiti_cover(JList lista, Utente U);
 
 	void aggiungi_preferito_cover(Cover C, Utente U);
 

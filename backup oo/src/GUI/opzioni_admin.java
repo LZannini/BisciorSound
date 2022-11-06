@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,7 +39,7 @@ public class opzioni_admin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton back_button = new JButton("Home Admin");
+		JButton back_button = new JButton("Home");
 		back_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -46,7 +48,7 @@ public class opzioni_admin extends JFrame {
 				dispose();
 			}
 		});
-		back_button.setBounds(10, 232, 115, 21);
+		back_button.setBounds(10, 232, 85, 21);
 		contentPane.add(back_button);
 		
 		JLabel lblNewLabel = new JLabel("Inserire Traccia: ");
@@ -105,5 +107,10 @@ public class opzioni_admin extends JFrame {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1.setBounds(290, 195, 115, 58);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel imgSound_label = new JLabel("");
+		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgSound_label.setBounds(10, 0, 476, 261);
+		contentPane.add(imgSound_label);
 	}
 }

@@ -1,42 +1,36 @@
 package GUI;
-import Model.*;
+
 import java.awt.BorderLayout;
-import Controller.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.SQLException;
+import Controller.*;
 
-public class lista_album extends JFrame {
+public class tabella_ascoltiCover extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 	private Controller controller;
-	private JFrame frame;
-	Connection conn = null;
-	boolean checkAdmin = false;
-	String user = GUI.admin_login.getNomeLoginAdmin();
-	Utente U;
+	private boolean checkAdmin = false;
+
 
 	/**
 	 * Create the frame.
 	 */
-	public lista_album(Controller c, JFrame frameChiamante) {
-		frame = this;
+	public tabella_ascoltiCover(Controller c, JFrame frameChiamante) {
 		controller = c;
-		frame.setVisible(true);
-		setTitle("Lista Album");
+		setTitle("Ascolti Cover");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,7 +38,6 @@ public class lista_album extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 		
 		JButton back_button = new JButton("Home");
 		back_button.addMouseListener(new MouseAdapter() {
@@ -57,12 +50,12 @@ public class lista_album extends JFrame {
 					e1.printStackTrace();
 				}
 				if (checkAdmin == true) {
-					home_admin home_admin = new home_admin(controller, frame);
+					home_admin home_admin = new home_admin(controller, frameChiamante);
 					home_admin.setVisible(true);
 					dispose();
 				}
 				else {
-				    home_utente home_utente = new home_utente(controller, frame);
+				    home_utente home_utente = new home_utente(controller, frameChiamante);
 				    home_utente.setVisible(true);
 				    dispose();
 				}
@@ -71,21 +64,26 @@ public class lista_album extends JFrame {
 		back_button.setBounds(10, 232, 85, 21);
 		contentPane.add(back_button);
 		
-		JList listaAlbum = new JList();
-		listaAlbum.setBounds(190, 235, 160, 197);
-		contentPane.add(listaAlbum);
+		table = new JTable();
+		table.setBounds(10, 11, 414, 210);
+		contentPane.add(table);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 414, 210);
-		contentPane.add(scrollPane);
-		scrollPane.setViewportView(listaAlbum);
+		JButton btn_tack = new JButton("Mostra Tracce");
+		btn_tack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tabella_ascoltiTracce tabella_ascoltiTracce = new tabella_ascoltiTracce(c, frameChiamante);
+				tabella_ascoltiTracce.setVisible(true);
+				dispose();
+			}
+		});
 		
 		JLabel imgSound_label = new JLabel("");
 		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
 		imgSound_label.setBounds(10, 0, 476, 261);
 		contentPane.add(imgSound_label);
 		
-		controller.listaAlbum(listaAlbum);
+		btn_tack.setBounds(296, 232, 128, 21);
+		contentPane.add(btn_tack);
 	}
-
 }
