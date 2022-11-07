@@ -14,8 +14,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import DAO.UtenteDAO;
-import GUI.admin_login;
-import GUI.pagina_iniziale;
+import GUI.AdminLogin;
+import GUI.PaginaIniziale;
 
 public class UtenteImplementazionePG_DAO implements UtenteDAO {
 
@@ -165,39 +165,14 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 
 	}
 
-	public Utente DatiUtente(String username, String password) {
-		PreparedStatement login;
-		try {
-			login = conn.prepareStatement(
-					"SELECT * FROM Utente WHERE username ='" + username + "' AND password = '" + password + "'");
-
-			ResultSet rs = login.executeQuery();
-			while (rs.next()) {
-				U = new Utente(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"),
-						rs.getBoolean("admin"));
-			}
-			rs.close();
-			return U;
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-			return null;
-
-		}
-	}
-
 	public Utente utenteLoggato() {
 
-		int id = 0;
-		String nome = null, password = null;
-		boolean admin = false;
-		Utente U = new Utente(id, nome, password, admin);
+		Utente U = null;
 
 		try {
 			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select * from utente where username = '" + pagina_iniziale.getNomeLogin()
-					+ "' or username = '" + admin_login.getNomeLoginAdmin() + "'");
+			ResultSet rs = st.executeQuery("select * from utente where username = '" + PaginaIniziale.getNomeLogin()
+					+ "' or username = '" + AdminLogin.getNomeLoginAdmin() + "'");
 			while (rs.next()) {
 				U = new Utente(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"),
 						rs.getBoolean("admin"));
@@ -209,26 +184,6 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 			e.printStackTrace();
 			return null;
 		}
-	}
-
-	public String riempiNome(String nome) {
-
-		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st
-					.executeQuery("select * from utente where username = '" + pagina_iniziale.getNomeLogin() + "'");
-			while (rs.next()) {
-
-				nome = rs.getString(nome);
-
-			}
-			rs.close();
-			st.close();
-		} catch (SQLException ex) {
-
-		}
-		return nome;
-
 	}
 
 	public boolean checkLoginAdmin(Utente U) throws SQLException {

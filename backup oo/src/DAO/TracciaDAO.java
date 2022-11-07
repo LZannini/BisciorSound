@@ -10,4 +10,5 @@ public interface TracciaDAO {
 
 	String[] sfogliaTracce();
 
+	public Traccia tracciaSelezionata(String nome_traccia);
 }

@@ -12,7 +12,7 @@ public class GUIMain {
 			public void run() {
 				try {
 					Controller c= new Controller();
-					pagina_iniziale start_frame = new pagina_iniziale(c);
+					PaginaIniziale start_frame = new PaginaIniziale(c);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -21,6 +21,4 @@ public interface UtenteDAO {
 
 	Utente utenteLoggato();
 
-	String riempiNome(String nome);
-
 }

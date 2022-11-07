@@ -15,13 +15,43 @@ public class Controller {
 	AscoltoTraccia AT;
 	AscoltoCover AC;
 	Cover C;
-	Preferiti P;
+	PreferitiTracce PT;
 	PreferitiCover PC;
 	Traccia T;
 	Utente U;
 
 	public Controller() {
 
+	}
+	
+	public Traccia trackData(String nome_traccia) {
+		TracciaDAO T_DAO = new TracciaImplementazionePG_DAO();
+		return T_DAO.tracciaSelezionata(nome_traccia);
+	}
+	
+	public Cover coverData(String nome_cover) {
+		CoverDAO C_DAO = new CoverImplementazionePG_DAO();
+		return C_DAO.coverSelezionata(nome_cover);
+	}
+	
+	public void removePreferitoTraccia(Traccia T, Utente U) {
+		PreferitiTracceDAO PT_DAO = new PreferitiTracciaImplementazionePG_DAO();
+		PT_DAO.rimuovi_preferito(T, U);
+	}
+	
+	public void removePreferitoCover(Cover C, Utente U) {
+		PreferitiCoverDAO PC_DAO = new PreferitiCoverImplementazionePG_DAO();
+		PC_DAO.rimuovi_preferito_cover(C, U);
+	}
+	
+	public void addPreferitoTraccia(Traccia T, Utente U) {
+		PreferitiTracceDAO PT_DAO = new PreferitiTracciaImplementazionePG_DAO();
+		PT_DAO.aggiungi_preferito(T, U);
+	}
+	
+	public void addPreferitoCover(Cover C, Utente U) {
+		PreferitiCoverDAO PC_DAO = new PreferitiCoverImplementazionePG_DAO();
+		PC_DAO.aggiungi_preferito_cover(C, U);
 	}
 	
 	public void mostra_ascoltiTracce(JTable table, Utente U) {
@@ -41,7 +71,7 @@ public class Controller {
 
 	public void registraUtente() {
 		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
-		U_DAO.registra_utente(GUI.registrazione.getNomeReg(), GUI.registrazione.getPasswordReg());
+		U_DAO.registra_utente(GUI.Registrazione.getNomeReg(), GUI.Registrazione.getPasswordReg());
 	}
 
 	public Utente userData() {
@@ -70,7 +100,7 @@ public class Controller {
 	}
 
 	public void listaTracce(JList lista) {
-		TracciaDAO T_DAO = new TracceImplementazionePG_DAO();
+		TracciaDAO T_DAO = new TracciaImplementazionePG_DAO();
 		T_DAO.mostra_tracce(lista);
 	}
 
@@ -80,7 +110,7 @@ public class Controller {
 	}
 
 	public void listaPreferiti(JList lista, Utente U) {
-		PreferitiDAO P_DAO = new PreferitiImplementazionePG_DAO();
+		PreferitiTracceDAO P_DAO = new PreferitiTracciaImplementazionePG_DAO();
 		P_DAO.mostra_preferiti(lista, U);
 	}
 
