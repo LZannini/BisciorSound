@@ -100,10 +100,10 @@ public class home_utente extends JFrame {
 		img_label.setBounds(10, 193, 85, 94);
 		contentPane.add(img_label);
 		
-		JLabel imgSound_label = new JLabel("");
-		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
-		imgSound_label.setBounds(0, 0, 434, 261);
-		contentPane.add(imgSound_label);
+		JLabel imgBG_label = new JLabel("");
+		imgBG_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgBG_label.setBounds(0, 0, 434, 261);
+		contentPane.add(imgBG_label);
 		
 	}
 }

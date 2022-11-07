@@ -13,6 +13,7 @@ public class Controller {
 
 	Album A;
 	AscoltoTraccia AT;
+	AscoltoCover AC;
 	Cover C;
 	Preferiti P;
 	PreferitiCover PC;

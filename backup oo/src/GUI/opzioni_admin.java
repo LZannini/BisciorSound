@@ -68,8 +68,8 @@ public class opzioni_admin extends JFrame {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.addItem("---");
-		comboBox.addItem("Utenti che hanno effettuato più ascolti");
-		comboBox.addItem("Fascia oraria in cui un utente ha effettuato più ascolti");
+		comboBox.addItem("Utenti che hanno effettuato piu' ascolti");
+		comboBox.addItem("Fascia oraria in cui un utente ha effettuato piu' ascolti");
 		comboBox.setBounds(10, 114, 325, 21);
 		contentPane.add(comboBox);
 		
@@ -80,12 +80,12 @@ public class opzioni_admin extends JFrame {
 				String scelta = (String)comboBox.getSelectedItem();
 				if (scelta == "---")
 				    JOptionPane.showMessageDialog(null, "Errore. Nessuna operazione scelta!");
-				else if (scelta == "Utenti che hanno effettuato pi� ascolti") {
+				else if (scelta == "Utenti che hanno effettuato piu' ascolti") {
 					utenti_piu_ascolti utenti_piu_ascolti = new utenti_piu_ascolti(controller, frameChiamante);
 				    utenti_piu_ascolti.setVisible(true);
 				    dispose();
 				}			
-				else if (scelta == "Fascia oraria in cui un utente ha effettuato pi� ascolti") {
+				else if (scelta == "Fascia oraria in cui un utente ha effettuato piu' ascolti") {
 					fasciaoraria_piu_ascolti fasciaoraria_piu_ascolti = new fasciaoraria_piu_ascolti(controller, frameChiamante);
 					fasciaoraria_piu_ascolti.setVisible(true);
 					dispose();
@@ -108,9 +108,9 @@ public class opzioni_admin extends JFrame {
 		btnNewButton_1.setBounds(290, 195, 115, 58);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel imgSound_label = new JLabel("");
-		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
-		imgSound_label.setBounds(10, 0, 476, 261);
-		contentPane.add(imgSound_label);
+		JLabel imgBG_label = new JLabel("");
+		imgBG_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgBG_label.setBounds(0, 0, 486, 261);
+		contentPane.add(imgBG_label);
 	}
 }

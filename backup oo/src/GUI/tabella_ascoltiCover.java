@@ -78,10 +78,10 @@ public class tabella_ascoltiCover extends JFrame {
 			}
 		});
 		
-		JLabel imgSound_label = new JLabel("");
-		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
-		imgSound_label.setBounds(10, 0, 476, 261);
-		contentPane.add(imgSound_label);
+		JLabel imgBG_label = new JLabel("");
+		imgBG_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgBG_label.setBounds(0, 0, 486, 261);
+		contentPane.add(imgBG_label);
 		
 		btn_tack.setBounds(296, 232, 128, 21);
 		contentPane.add(btn_tack);

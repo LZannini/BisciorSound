@@ -1,28 +1,28 @@
 package Model;
 
-public class AscoltoTraccia {
+public class AscoltoCover {
 
-	private int id_ascolto;
+	private int id_ascoltoc;
 	private int id_utente;
-	private int id_traccia;
+	private int id_cover;
 	private int num_ascolti;
 	private String fascia_oraria;
 
-	public AscoltoTraccia(int id_ascolto, int id_utente, int id_traccia, int num_ascolti, String fascia_oraria) {
+	public AscoltoCover(int id_ascoltoc, int id_utente, int id_cover, int num_ascolti, String fascia_oraria) {
 		super();
-		this.id_ascolto = id_ascolto;
+		this.id_ascoltoc = id_ascoltoc;
 		this.id_utente = id_utente;
-		this.id_traccia = id_traccia;
+		this.id_cover = id_cover;
 		this.num_ascolti = num_ascolti;
 		this.fascia_oraria = fascia_oraria;
 	}
 
-	public int getId_ascolto() {
-		return id_ascolto;
+	public int getId_ascoltoc() {
+		return id_ascoltoc;
 	}
 
-	public void setId_ascolto(int id_ascolto) {
-		this.id_ascolto = id_ascolto;
+	public void setId_ascoltoc(int id_ascoltoc) {
+		this.id_ascoltoc = id_ascoltoc;
 	}
 
 	public int getId_utente() {
@@ -33,12 +33,12 @@ public class AscoltoTraccia {
 		this.id_utente = id_utente;
 	}
 
-	public int getId_traccia() {
-		return id_traccia;
+	public int getId_cover() {
+		return id_cover;
 	}
 
-	public void setId_traccia(int id_traccia) {
-		this.id_traccia = id_traccia;
+	public void setId_cover(int id_cover) {
+		this.id_cover = id_cover;
 	}
 
 	public int getNum_ascolti() {

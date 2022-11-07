@@ -108,10 +108,10 @@ public class lista_tracce extends JFrame {
 		btnPreferiti.setBounds(335, 50, 89, 49);
 		contentPane.add(btnPreferiti);
 		
-		JLabel imgSound_label = new JLabel("");
-		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
-		imgSound_label.setBounds(10, 0, 476, 261);
-		contentPane.add(imgSound_label);
+		JLabel imgBG_label = new JLabel("");
+		imgBG_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgBG_label.setBounds(0, 0, 486, 261);
+		contentPane.add(imgBG_label);
 		
 		scrollPane.setViewportView(listaTracce);
 	}

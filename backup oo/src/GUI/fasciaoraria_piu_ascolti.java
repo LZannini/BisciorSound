@@ -52,16 +52,15 @@ public class fasciaoraria_piu_ascolti extends JFrame {
 		listaFasciaOraria.setBounds(190, 235, 160, 197);
 		contentPane.add(listaFasciaOraria);
 		
-		JLabel imgSound_label = new JLabel("");
-		imgSound_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
-		imgSound_label.setBounds(10, 0, 476, 261);
-		contentPane.add(imgSound_label);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 414, 210);
 		contentPane.add(scrollPane);
-		
 		scrollPane.setViewportView(listaFasciaOraria);
+		
+		JLabel imgBG_label = new JLabel("");
+		imgBG_label.setIcon(new ImageIcon(home_utente.class.getResource("/immagini/icona_bg.png")));
+		imgBG_label.setBounds(0, 0, 496, 261);
+		contentPane.add(imgBG_label);
 	}
 
 }
