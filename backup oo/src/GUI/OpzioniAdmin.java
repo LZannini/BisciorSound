@@ -22,9 +22,12 @@ import javax.swing.JComboBox;
 public class OpzioniAdmin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private static JTextField trackField;
 	private Controller controller;
-
+	private static String nomeTraccia = null;
+	private static String nomeUtente = null;
+	private JTextField userField;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -54,46 +57,32 @@ public class OpzioniAdmin extends JFrame {
 		JLabel lblNewLabel = new JLabel("Inserire Traccia: ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(61, 36, 115, 13);
+		lblNewLabel.setBounds(25, 60, 115, 13);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(150, 34, 161, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		trackField = new JTextField();
+		trackField.setBounds(120, 57, 161, 19);
+		contentPane.add(trackField);
+		trackField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Scegliere l'operazione da effettuare: ");
-		lblNewLabel_1.setBounds(10, 84, 301, 13);
+		JLabel lblNewLabel_1 = new JLabel("Utenti che hanno effettuato piu' ascolti: ");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Segoe UI Black", Font.ITALIC, 10));
+		lblNewLabel_1.setBounds(10, 34, 301, 13);
 		contentPane.add(lblNewLabel_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.addItem("---");
-		comboBox.addItem("Utenti che hanno effettuato piu' ascolti");
-		comboBox.addItem("Fascia oraria in cui un utente ha effettuato piu' ascolti");
-		comboBox.setBounds(10, 107, 325, 21);
-		contentPane.add(comboBox);
-		
-		JButton btnNewButton = new JButton("OK");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnOKtrack = new JButton("OK");
+		btnOKtrack.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				String scelta = (String)comboBox.getSelectedItem();
-				if (scelta == "---")
-				    JOptionPane.showMessageDialog(null, "Errore. Nessuna operazione scelta!");
-				else if (scelta == "Utenti che hanno effettuato piu' ascolti") {
-					UtentiPiuAscolti utenti_piu_ascolti = new UtentiPiuAscolti(controller, frameChiamante);
+			public void mouseClicked(MouseEvent e) {				
+					nomeTraccia = trackField.getText();
+					UtentiPiuAscoltiTracce utenti_piu_ascolti = new UtentiPiuAscoltiTracce(controller, frameChiamante);
 				    utenti_piu_ascolti.setVisible(true);
 				    dispose();
-				}			
-				else if (scelta == "Fascia oraria in cui un utente ha effettuato piu' ascolti") {
-					FasciaOrariaPiuAscolti fasciaoraria_piu_ascolti = new FasciaOrariaPiuAscolti(controller, frameChiamante);
-					fasciaoraria_piu_ascolti.setVisible(true);
-					dispose();
-				}
 			}
 		});
-		btnNewButton.setBounds(349, 107, 60, 21);
-		contentPane.add(btnNewButton);
+		btnOKtrack.setBounds(288, 56, 53, 20);
+		contentPane.add(btnOKtrack);
 		
 		JButton btnNewButton_1 = new JButton("Lista Utenti");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -108,9 +97,50 @@ public class OpzioniAdmin extends JFrame {
 		btnNewButton_1.setBounds(290, 195, 115, 58);
 		contentPane.add(btnNewButton_1);
 		
+		JLabel lblNewLabel_1_1 = new JLabel("Fascia oraria in cui un utente ha effettuato piu' ascolti: ");
+		lblNewLabel_1_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1_1.setFont(new Font("Segoe UI Black", Font.ITALIC, 10));
+		lblNewLabel_1_1.setBounds(10, 105, 301, 13);
+		contentPane.add(lblNewLabel_1_1);
+				
+		JLabel lblNewLabel_2 = new JLabel("Inserire Utente: ");
+		lblNewLabel_2.setForeground(Color.BLACK);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(25, 131, 115, 13);
+		contentPane.add(lblNewLabel_2);
+		
+		userField = new JTextField();
+		userField.setColumns(10);
+		userField.setBounds(120, 128, 161, 19);
+		contentPane.add(userField);
+		
+		JButton btnOKuser = new JButton("OK");
+		btnOKuser.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				nomeUtente = userField.getText();
+				FasciaOrariaPiuAscolti fasciaOrariaPiuAscolti = new FasciaOrariaPiuAscolti(c, frameChiamante);
+				fasciaOrariaPiuAscolti.setVisible(true);
+				dispose();
+			}
+		});
+		btnOKuser.setBounds(288, 127, 53, 20);
+		contentPane.add(btnOKuser);
+		
 		JLabel imgBG_label = new JLabel("");
-		imgBG_label.setIcon(new ImageIcon(HomeUtente.class.getResource("/immagini/icona_bg.png")));
+		imgBG_label.setIcon(new ImageIcon(OpzioniAdmin.class.getResource("/immagini/icona_admin.jpg")));
 		imgBG_label.setBounds(0, 0, 486, 261);
 		contentPane.add(imgBG_label);
+		
+	}
+	
+	public static String getTrack() {
+		
+		return nomeTraccia;	
+	}
+	
+	public static String getUser() {
+		
+		return nomeUtente;	
 	}
 }

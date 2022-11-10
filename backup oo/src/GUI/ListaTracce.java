@@ -111,9 +111,8 @@ public class ListaTracce extends JFrame {
 		imgBG_label.setIcon(new ImageIcon(HomeUtente.class.getResource("/immagini/icona_bg.png")));
 		imgBG_label.setBounds(0, 0, 486, 261);
 		contentPane.add(imgBG_label);
-
+		
 		scrollPane.setViewportView(listaTracce);
-
 	}
 
 }

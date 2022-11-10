@@ -171,8 +171,8 @@ public class UtenteImplementazionePG_DAO implements UtenteDAO {
 
 		try {
 			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select * from utente where username = '" + PaginaIniziale.getNomeLogin()
-					+ "' or username = '" + AdminLogin.getNomeLoginAdmin() + "'");
+			ResultSet rs = st.executeQuery("select * from utente where (username = '" + PaginaIniziale.getNomeLogin()
+					+ "' AND password = '" + PaginaIniziale.getPasswordLogin() + "') OR (username = '" + AdminLogin.getNomeLoginAdmin() + "' AND password = '" + AdminLogin.getPasswordLoginAdmin() +"')");
 			while (rs.next()) {
 				U = new Utente(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"),
 						rs.getBoolean("admin"));

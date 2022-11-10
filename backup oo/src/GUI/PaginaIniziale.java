@@ -132,7 +132,7 @@ public class PaginaIniziale extends JFrame {
 
 		JLabel img_label = new JLabel("");
 		img_label.setBounds(46, 0, 428, 73);
-		img_label.setIcon(new ImageIcon(PaginaIniziale.class.getResource("/immagini/img_benvenuto.png")));
+		img_label.setIcon(new ImageIcon(PaginaIniziale.class.getResource("/immagini/icona_benvenuto.png")));
 		start_frame.getContentPane().add(img_label);
 
 		JLabel img2_label = new JLabel("");

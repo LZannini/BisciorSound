@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JTable;
+import java.awt.Font;
 
 public class TabellaAscoltiTracce extends JFrame {
 
@@ -26,8 +27,10 @@ public class TabellaAscoltiTracce extends JFrame {
 	private Controller controller;
 	boolean checkAdmin = false;
 	private JFrame frame;
-	private JTable tabella;
+	private JTable tabAscoltiTraccia;
 	private JButton btn_cover;
+	private JLabel nome_lbl;
+	private JLabel numAscolti_lbl;
 
 	/**
 	 * Create the frame.
@@ -69,12 +72,11 @@ public class TabellaAscoltiTracce extends JFrame {
 		back_button.setBounds(10, 232, 85, 21);
 		contentPane.add(back_button);
 		
-		tabella = new JTable();
-		tabella.setBounds(10, 11, 414, 210);
-		contentPane.add(tabella);
+		tabAscoltiTraccia = new JTable();
+		tabAscoltiTraccia.setBounds(10, 37, 414, 184);
+		contentPane.add(tabAscoltiTraccia);
 		
-		Utente U = controller.userData();
-		controller.mostra_ascoltiTracce(tabella, U);
+		controller.ascoltiTracciaData(tabAscoltiTraccia, controller.userData());
 		
 		btn_cover = new JButton("Mostra Cover");
 		btn_cover.addMouseListener(new MouseAdapter() {
@@ -85,6 +87,11 @@ public class TabellaAscoltiTracce extends JFrame {
 				dispose();
 			}
 		});
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 414, 210);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(tabAscoltiTraccia);
 		
 		JLabel imgBG_label = new JLabel("");
 		imgBG_label.setIcon(new ImageIcon(HomeUtente.class.getResource("/immagini/icona_bg.png")));

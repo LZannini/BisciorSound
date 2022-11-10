@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 
@@ -16,11 +17,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import Controller.*;
+import java.awt.Font;
 
 public class TabellaAscoltiCover extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tabAscoltiCover;
 	private Controller controller;
 	private boolean checkAdmin = false;
 
@@ -64,9 +66,11 @@ public class TabellaAscoltiCover extends JFrame {
 		back_button.setBounds(10, 232, 85, 21);
 		contentPane.add(back_button);
 		
-		table = new JTable();
-		table.setBounds(10, 11, 414, 210);
-		contentPane.add(table);
+		tabAscoltiCover = new JTable();
+		tabAscoltiCover.setBounds(10, 37, 414, 184);
+		contentPane.add(tabAscoltiCover);
+		
+		controller.ascoltiCoverData(tabAscoltiCover, controller.userData());
 		
 		JButton btn_tack = new JButton("Mostra Tracce");
 		btn_tack.addMouseListener(new MouseAdapter() {
@@ -78,6 +82,11 @@ public class TabellaAscoltiCover extends JFrame {
 			}
 		});
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 414, 210);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(tabAscoltiCover);
+		
 		JLabel imgBG_label = new JLabel("");
 		imgBG_label.setIcon(new ImageIcon(HomeUtente.class.getResource("/immagini/icona_bg.png")));
 		imgBG_label.setBounds(0, 0, 486, 261);
@@ -85,5 +94,6 @@ public class TabellaAscoltiCover extends JFrame {
 		
 		btn_tack.setBounds(296, 232, 128, 21);
 		contentPane.add(btn_tack);
+
 	}
 }

@@ -17,24 +17,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Font;
 
-public class FasciaOrariaPiuAscolti extends JFrame {
+public class UtentiPiuAscoltiTracce extends JFrame {
 
 	private JPanel contentPane;
 	private Controller controller;
-	private JTable tabFasciaOrariaTracce;
-	private JTable tabFasciaOrariaCover;
-	private JLabel lbl_track;
-	private JLabel lbl_cover;
-	private String utenteInserito = OpzioniAdmin.getUser();
+	private JTable tabUtentiPiuAscoltiTraccia;
+	private String tracciaInserita = OpzioniAdmin.getTrack(); 
 
 	/**
 	 * Create the frame.
 	 */
-	public FasciaOrariaPiuAscolti(Controller c, JFrame frameChiamante) {
+	public UtentiPiuAscoltiTracce(Controller c, JFrame frameChiamante) {
 		controller = c;
-		setTitle("Fascia oraria in cui un utente ha effettuato pi\u00F9 ascolti");
+		setTitle("Utenti che hanno effettuato più ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,7 +43,7 @@ public class FasciaOrariaPiuAscolti extends JFrame {
 		back_button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				utenteInserito = null;
+				tracciaInserita = null;
 				OpzioniAdmin opzioni_admin = new OpzioniAdmin(controller, frameChiamante);
 				opzioni_admin.setVisible(true);
 				dispose();
@@ -56,30 +52,33 @@ public class FasciaOrariaPiuAscolti extends JFrame {
 		back_button.setBounds(10, 232, 115, 21);
 		contentPane.add(back_button);
 		
-		tabFasciaOrariaTracce = new JTable();
-		tabFasciaOrariaTracce.setBounds(10, 39, 414, 14);
-		contentPane.add(tabFasciaOrariaTracce);
+		tabUtentiPiuAscoltiTraccia = new JTable();
+		tabUtentiPiuAscoltiTraccia.setBounds(10, 37, 414, 184);
+		contentPane.add(tabUtentiPiuAscoltiTraccia);
 		
-		tabFasciaOrariaCover = new JTable();
-		tabFasciaOrariaCover.setBounds(10, 126, 414, 14);
-		contentPane.add(tabFasciaOrariaCover);	
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 414, 210);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(tabUtentiPiuAscoltiTraccia);
 		
+		controller.utentiPiuAscoltiTracciaData(tabUtentiPiuAscoltiTraccia, controller.trackData(tracciaInserita));
+	
 		JLabel imgBG_label = new JLabel("");
 		imgBG_label.setIcon(new ImageIcon(HomeUtente.class.getResource("/immagini/icona_bg.png")));
-		imgBG_label.setBounds(0, 0, 496, 261);
+		imgBG_label.setBounds(0, 0, 486, 261);
 		contentPane.add(imgBG_label);
 		
-		lbl_track = new JLabel("Tracce: ");
-		lbl_track.setForeground(new Color(0, 0, 0));
-		lbl_track.setFont(new Font("Segoe UI Black", Font.ITALIC, 10));
-		lbl_track.setBounds(10, 19, 46, 14);
-		contentPane.add(lbl_track);
-		
-		lbl_cover = new JLabel("Cover:");
-		lbl_cover.setFont(new Font("Segoe UI Black", Font.ITALIC, 10));
-		lbl_cover.setBounds(10, 106, 46, 14);
-		contentPane.add(lbl_cover);
-		
-		controller.mostraFasceOrariePiuAscolti(tabFasciaOrariaTracce, tabFasciaOrariaCover, utenteInserito);
+		JButton button_cover = new JButton("Mostra Cover");
+		button_cover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				UtentiPiuAscoltiCover utentiPiuAscoltiCover = new UtentiPiuAscoltiCover(c, frameChiamante);
+				utentiPiuAscoltiCover.setVisible(true);
+				dispose();
+			}
+		});
+		button_cover.setBounds(296, 232, 128, 21);
+		contentPane.add(button_cover);
+				
 	}
 }
