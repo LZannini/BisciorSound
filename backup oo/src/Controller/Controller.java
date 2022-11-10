@@ -24,6 +24,33 @@ public class Controller {
 
 	}
 	
+	public void mostraFasceOrariePiuAscolti(JTable tabella1, JTable tabella2, String nome_utente) {
+		AscoltoCoverDAO AC_DAO = new AscoltoCoverImplementazionePG_DAO();
+		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
+		AC_DAO.riempiFasciaOrariaPiuAscoltiCover(tabella2, nome_utente);
+		AT_DAO.riempiFasciaOrariaPiuAscoltiTraccia(tabella1, nome_utente);
+	}
+	
+	public void utentiPiuAscoltiCoverData(JTable tabella, Traccia T) {
+		AscoltoCoverDAO AC_DAO = new AscoltoCoverImplementazionePG_DAO();
+		AC_DAO.riempiUtentiPiuAscoltiCover(tabella, T);
+	}
+	
+	public void utentiPiuAscoltiTracciaData(JTable tabella, Traccia T) {
+		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
+		AT_DAO.riempiUtentiPiuAscoltiTraccia(tabella, T);
+	}
+	
+	public void ascoltiTracciaData(JTable tabella, Utente U) {
+		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
+		AT_DAO.riempiAscoltiTraccia(tabella, U);
+	}
+	
+	public void ascoltiCoverData(JTable tabella, Utente U) {
+		AscoltoCoverDAO AC_DAO = new AscoltoCoverImplementazionePG_DAO();
+		AC_DAO.riempiAscoltiCover(tabella, U);
+	}
+	
 	public Traccia trackData(String nome_traccia) {
 		TracciaDAO T_DAO = new TracciaImplementazionePG_DAO();
 		return T_DAO.tracciaSelezionata(nome_traccia);
@@ -52,11 +79,6 @@ public class Controller {
 	public void addPreferitoCover(Cover C, Utente U) {
 		PreferitiCoverDAO PC_DAO = new PreferitiCoverImplementazionePG_DAO();
 		PC_DAO.aggiungi_preferito_cover(C, U);
-	}
-	
-	public void mostra_ascoltiTracce(JTable table, Utente U) {
-		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
-		AT_DAO.mostra_ascoltiTracce(table, U);
 	}
 	
 	public boolean controllaLoginAdmin(Utente U) throws SQLException {

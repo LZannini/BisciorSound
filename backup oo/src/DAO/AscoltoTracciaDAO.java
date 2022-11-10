@@ -5,6 +5,8 @@ import Model.*;
 
 public interface AscoltoTracciaDAO {
 	
-	public JTable mostra_ascoltiTracce(JTable tabella, Utente U);
+	public void riempiAscoltiTraccia(JTable tabella, Utente U);
+	public void riempiUtentiPiuAscoltiTraccia(JTable tabella, Traccia T);
+	public void riempiFasciaOrariaPiuAscoltiTraccia(JTable tabella, String nome_utente);
 
 }
