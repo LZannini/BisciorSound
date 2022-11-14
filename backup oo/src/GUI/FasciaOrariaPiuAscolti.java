@@ -25,6 +25,7 @@ public class FasciaOrariaPiuAscolti extends JFrame {
 	private Controller controller;
 	private JTable tabFasciaOrariaTracce;
 	private JTable tabFasciaOrariaCover;
+	private JFrame frame;
 	private JLabel lbl_track;
 	private JLabel lbl_cover;
 	private String utenteInserito = OpzioniAdmin.getUser();
@@ -34,6 +35,7 @@ public class FasciaOrariaPiuAscolti extends JFrame {
 	 */
 	public FasciaOrariaPiuAscolti(Controller c, JFrame frameChiamante) {
 		controller = c;
+		frame = this;
 		setTitle("Fascia oraria in cui un utente ha effettuato pi\u00F9 ascolti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -42,6 +44,7 @@ public class FasciaOrariaPiuAscolti extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
 		
 		JButton back_button = new JButton("Torna indietro");
 		back_button.addMouseListener(new MouseAdapter() {

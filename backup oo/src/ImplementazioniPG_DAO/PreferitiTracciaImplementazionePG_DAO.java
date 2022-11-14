@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import DAO.*;
 
@@ -29,8 +30,8 @@ public class PreferitiTracciaImplementazionePG_DAO implements PreferitiTracceDAO
 
 	public JList mostra_preferiti(JList lista, Utente U) {
 
-		String query = "select nome from traccia, utente, preferiti where preferiti.id_utente = '" + U.getUser_id()
-				+ "' and preferiti.id_traccia = traccia.id_track and  utente.username = '" + U.getUsername()
+		String query = "select nome from traccia, utente, preferiti_traccia where preferiti_traccia.id_utente = '" + U.getUser_id()
+				+ "' and preferiti_traccia.id_traccia = traccia.id_track and  utente.username = '" + U.getUsername()
 				+ "' order by traccia.nome";
 		DefaultListModel model = new DefaultListModel();
 
@@ -81,7 +82,7 @@ public class PreferitiTracciaImplementazionePG_DAO implements PreferitiTracceDAO
 
 		PreparedStatement ps = null;
 
-		String query = "INSERT INTO preferiti(id_utente, id_traccia) SELECT user_id, id_track from utente, traccia where traccia.nome = '"
+		String query = "INSERT INTO preferiti_traccia(id_utente, id_traccia) SELECT user_id, id_track from utente, traccia where traccia.nome = '"
 				+ T.getNome() + "' and utente.username = '" + U.getUsername() + "' ";
 
 		try {
@@ -116,7 +117,7 @@ public class PreferitiTracciaImplementazionePG_DAO implements PreferitiTracceDAO
 
 		PreparedStatement ps = null;
 
-		String query = "delete from preferiti where id_utente = (select user_id from utente where username = '"
+		String query = "delete from preferiti_traccia where id_utente = (select user_id from utente where username = '"
 				+ U.getUsername() + "') and id_traccia = (select id_track from traccia where nome = '" + T.getNome()
 				+ "')";
 

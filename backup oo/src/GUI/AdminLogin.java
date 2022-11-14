@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 public class AdminLogin extends JFrame {
 
 	private JPanel contentPane;
+	private JFrame frame;
 	private Controller controller;
 	private JTextField adminusername_field;
 	private JPasswordField adminpassword_field;
@@ -34,6 +35,7 @@ public class AdminLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public AdminLogin(Controller c, JFrame frameChiamante) {
+		frame = this;
 		controller = c;
 		setTitle("Admin Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +45,8 @@ public class AdminLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
+		PaginaIniziale.setNomeLogin(null);
 		
 		adminusername_field = new JTextField();
 		adminusername_field.setBounds(126, 73, 96, 19);
@@ -69,6 +73,13 @@ public class AdminLogin extends JFrame {
 				nomeLoginAdmin = adminusername_field.getText();
 				passwordLoginAdmin = adminpassword_field.getText();
 				Utente U = controller.userData();
+				
+				if (U == null) {
+					JOptionPane.showMessageDialog(null, "Errore. Credenziali sbagliate!");
+					adminusername_field.setText("");
+					adminpassword_field.setText("");
+					return;
+				}
 				
 				try {
 					checkLogin = controller.controllaLoginAdmin(U);

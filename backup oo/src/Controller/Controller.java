@@ -36,6 +36,11 @@ public class Controller {
 		AC_DAO.riempiUtentiPiuAscoltiCover(tabella, T);
 	}
 	
+	public boolean controllaRegistrazioneUtente(String user_name) {
+		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
+		return U_DAO.checkUserIfExists(user_name);
+	}
+	
 	public void utentiPiuAscoltiTracciaData(JTable tabella, Traccia T) {
 		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
 		AT_DAO.riempiUtentiPiuAscoltiTraccia(tabella, T);
@@ -98,7 +103,7 @@ public class Controller {
 
 	public Utente userData() {
 		UtenteDAO U_DAO = new UtenteImplementazionePG_DAO();
-		return U_DAO.utenteLoggato();
+		return U_DAO.utenteLoggato();	
 	}
 
 	public boolean controlloAdmin(Utente U) throws SQLException {
@@ -140,7 +145,4 @@ public class Controller {
 		PreferitiCoverDAO PC_DAO = new PreferitiCoverImplementazionePG_DAO();
 		PC_DAO.mostra_preferiti_cover(lista, U);
 	}
-
-
-
 }

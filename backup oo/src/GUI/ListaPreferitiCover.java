@@ -30,12 +30,14 @@ public class ListaPreferitiCover extends JFrame {
 	private Controller controller;
 	boolean checkAdmin = false;	
 	private String scelta = null;
+	private JFrame frame;
 
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
 	public ListaPreferitiCover(Controller c, JFrame frameChiamante) throws SQLException {
+		frame = this;
 		controller = c;
 		setTitle("Lista Preferiti Cover ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +47,7 @@ public class ListaPreferitiCover extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
 		
 		JButton back_button = new JButton("Home");
 		back_button.addMouseListener(new MouseAdapter() {

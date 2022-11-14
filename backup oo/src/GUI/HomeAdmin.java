@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,6 +31,7 @@ public class HomeAdmin extends JFrame {
 	 */
 	public HomeAdmin(Controller c, JFrame frameChiamante) {
 		controller = c;
+		frame = this;
 		setTitle("Home - Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -38,6 +40,7 @@ public class HomeAdmin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 293, 28);
@@ -106,8 +109,19 @@ public class HomeAdmin extends JFrame {
 		contentPane.add(label_user);
 		
 		JLabel img_label = new JLabel("");
+		img_label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int logout = JOptionPane.showConfirmDialog(null, "Vuoi effettuare il logout?", "Logout", JOptionPane.OK_CANCEL_OPTION);
+				if (logout == JOptionPane.YES_OPTION) { 
+					PaginaIniziale paginaIniziale = new PaginaIniziale(c);
+					paginaIniziale.setVisible(true);
+					dispose();
+				}				
+			}
+		});
 		img_label.setIcon(new ImageIcon(HomeAdmin.class.getResource("/immagini/icona_utente.png")));
-		img_label.setBounds(10, 193, 85, 94);
+		img_label.setBounds(10, 208, 27, 65);
 		contentPane.add(img_label);
 		
 		JLabel imgBG_label = new JLabel("");

@@ -24,6 +24,7 @@ public class OpzioniAdmin extends JFrame {
 	private JPanel contentPane;
 	private static JTextField trackField;
 	private Controller controller;
+	private JFrame frame;
 	private static String nomeTraccia = null;
 	private static String nomeUtente = null;
 	private JTextField userField;
@@ -32,6 +33,7 @@ public class OpzioniAdmin extends JFrame {
 	 * Create the frame.
 	 */
 	public OpzioniAdmin(Controller c, JFrame frameChiamante) {
+		frame = this;
 		controller = c;
 		setTitle("Opzioni Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,6 +43,7 @@ public class OpzioniAdmin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
 		
 		JButton back_button = new JButton("Home");
 		back_button.addMouseListener(new MouseAdapter() {
@@ -76,6 +79,11 @@ public class OpzioniAdmin extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {				
 					nomeTraccia = trackField.getText();
+					if (controller.trackData(nomeTraccia) == null) {
+						JOptionPane.showMessageDialog(null, "La traccia inserita non e' presente nella libreria musicale!");
+						trackField.setText("");
+						return;
+					}
 					UtentiPiuAscoltiTracce utenti_piu_ascolti = new UtentiPiuAscoltiTracce(controller, frameChiamante);
 				    utenti_piu_ascolti.setVisible(true);
 				    dispose();
@@ -119,6 +127,11 @@ public class OpzioniAdmin extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				nomeUtente = userField.getText();
+				boolean check = controller.controllaRegistrazioneUtente(nomeUtente);
+				if (check == false) {
+					JOptionPane.showMessageDialog(null, "L'utente '" +nomeUtente+ "' non e' registrato!");
+					return;
+				}
 				FasciaOrariaPiuAscolti fasciaOrariaPiuAscolti = new FasciaOrariaPiuAscolti(c, frameChiamante);
 				fasciaOrariaPiuAscolti.setVisible(true);
 				dispose();

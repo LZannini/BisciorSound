@@ -24,6 +24,7 @@ public class TabellaAscoltiCover extends JFrame {
 	private JPanel contentPane;
 	private JTable tabAscoltiCover;
 	private Controller controller;
+	private JFrame frame;
 	private boolean checkAdmin = false;
 
 
@@ -31,6 +32,7 @@ public class TabellaAscoltiCover extends JFrame {
 	 * Create the frame.
 	 */
 	public TabellaAscoltiCover(Controller c, JFrame frameChiamante) {
+		frame = this;
 		controller = c;
 		setTitle("Ascolti Cover");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,6 +42,7 @@ public class TabellaAscoltiCover extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
 		
 		JButton back_button = new JButton("Home");
 		back_button.addMouseListener(new MouseAdapter() {

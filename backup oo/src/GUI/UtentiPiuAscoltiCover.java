@@ -21,6 +21,7 @@ public class UtentiPiuAscoltiCover extends JFrame {
 
 	private JPanel contentPane;
 	private Controller controller;
+	private JFrame frame;
 	private JTable tabUtentiPiuAscoltiCover;
 	private String tracciaInserita = OpzioniAdmin.getTrack(); 
 
@@ -28,6 +29,7 @@ public class UtentiPiuAscoltiCover extends JFrame {
 	 * Create the frame.
 	 */
 	public UtentiPiuAscoltiCover(Controller c, JFrame frameChiamante) {
+		frame = this;
 		setTitle("Utenti che hanno effettuato più ascolti (Cover)");
 		controller = c;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +39,7 @@ public class UtentiPiuAscoltiCover extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
 		
 		JButton back_button = new JButton("Torna indietro");
 		back_button.addMouseListener(new MouseAdapter() {

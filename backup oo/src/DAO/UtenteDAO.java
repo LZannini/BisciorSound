@@ -20,5 +20,7 @@ public interface UtenteDAO {
 	void registra_utente(String user_name, String user_password);
 
 	Utente utenteLoggato();
+	
+	public boolean checkUserIfExists(String nome_utente);
 
 }

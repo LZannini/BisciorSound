@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 public class Registrazione extends JFrame {
 
 	private JPanel contentPane;
+	private JFrame frame;
 	private Controller controller;
 	private JTextField utenteRG_field;
 	private JPasswordField passwordRG_field;
@@ -33,6 +34,7 @@ public class Registrazione extends JFrame {
 	 * Create the frame.
 	 */
 	public Registrazione(Controller c, JFrame frameChiamante) {
+		frame = this;
 		controller = c;
 		setTitle("Registrazione");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,6 +44,7 @@ public class Registrazione extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		frame.setResizable(false);
 		
 		JLabel label_rg1 = new JLabel("Username: ");
 		label_rg1.setBounds(121, 33, 77, 13);
@@ -83,8 +86,14 @@ public class Registrazione extends JFrame {
 				}
 				else if (cpassword_rg.equals(password_rg)) {
 					controller.registraUtente();
-					JOptionPane.showMessageDialog(null, "L'utente '"+utente_rg+"' è stato registrato!");
-					dispose();
+					if (password_rg.length() > 5) {
+						JOptionPane.showMessageDialog(null, "L'utente '"+utente_rg+"' è stato registrato!");
+						dispose();
+					}
+					else {
+						passwordRG_field.setText("");
+						CpasswordRG_field.setText("");
+					}
 					
 				}
 				else {

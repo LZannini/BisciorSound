@@ -41,12 +41,13 @@ public class PaginaIniziale extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		start_frame = new JFrame("");
+		start_frame = this;
 		start_frame.getContentPane().setBackground(new Color(255, 204, 0));
 		start_frame.setBounds(100, 100, 450, 300);
 		start_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		start_frame.getContentPane().setLayout(null);
-
+		start_frame.setResizable(false);
+		
 		username_textField = new JTextField();
 		username_textField.setBounds(98, 99, 96, 19);
 		start_frame.getContentPane().add(username_textField);
@@ -72,6 +73,12 @@ public class PaginaIniziale extends JFrame {
 				nomeLogin = username_textField.getText();
 				passwordLogin = password_textField.getText();
 				Utente U = controller.userData();
+				if (U == null) {
+					JOptionPane.showMessageDialog(null, "Errore. Credenziali sbagliate!");
+					username_textField.setText("");
+					password_textField.setText("");
+					return;
+				}
 
 				try {
 					tryLogin = controller.controllaLoginUtente(U);
@@ -81,7 +88,7 @@ public class PaginaIniziale extends JFrame {
 				}
 
 				if (tryLogin == false) {
-					JOptionPane.showMessageDialog(null, "Errore Credenziali sbagliate!");
+					JOptionPane.showMessageDialog(null, "Errore. Credenziali sbagliate!");
 					username_textField.setText("");
 					password_textField.setText("");
 				}
@@ -148,4 +155,9 @@ public class PaginaIniziale extends JFrame {
 	public static String getPasswordLogin() {
 		return passwordLogin;
 	}
+	
+	public static void setNomeLogin(String nome) {
+		nomeLogin = nome;
+	}
+	
 }
