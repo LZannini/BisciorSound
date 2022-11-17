@@ -106,15 +106,38 @@ public class ListaCover extends JFrame {
 				}
 			}
 		});
-		btnPreferiti.setBounds(335, 50, 89, 49);
+		btnPreferiti.setBounds(335, 50, 90, 49);
 		contentPane.add(btnPreferiti);
-
+		
+		JButton btnAscolto = new JButton("");
+		btnAscolto.setBackground(new Color(255, 204, 0));
+		btnAscolto.setIcon(new ImageIcon(ListaCover.class.getResource("/immagini/icona_play.png")));
+		btnAscolto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				scelta = (String) listaCover.getSelectedValue();
+				if (scelta == null)
+					JOptionPane.showMessageDialog(null, "Errore. Nessuna cover scelta!");
+				else {
+					if (controller.controllaAscoltoCover(controller.coverData(scelta), controller.userData())) 
+						controller.aggiornaAscoltoCover(controller.coverData(scelta), controller.userData());
+					else
+						controller.aggiungiAscoltoCover(controller.coverData(scelta), controller.userData());
+					
+					JOptionPane.showMessageDialog(null, "La cover '" + scelta +  "'e' stata ascoltata!");
+				}
+			}
+		});
+		btnAscolto.setBounds(357, 140, 45, 45);
+		contentPane.add(btnAscolto);
+		
 		JLabel imgBG_label = new JLabel("");
+		imgBG_label.addMouseListener(new MouseAdapter() {
+		});
 		imgBG_label.setIcon(new ImageIcon(HomeUtente.class.getResource("/immagini/icona_bg.png")));
 		imgBG_label.setBounds(0, 0, 486, 261);
 		contentPane.add(imgBG_label);
 
 		scrollPane.setViewportView(listaCover);
 	}
-	
 }

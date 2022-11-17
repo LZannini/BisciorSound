@@ -22,6 +22,104 @@ public class AscoltoCoverImplementazionePG_DAO implements AscoltoCoverDAO {
 		}
 	}
 	
+	public void aggiorna_ascolto_cover(Cover C, Utente U) {
+
+		PreparedStatement ps = null;
+
+		String query = "UPDATE ascolto_cover SET num_ascolti = num_ascolti + 1 WHERE id_utente = ? AND id_cover = ?";
+
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, U.getUser_id());
+			ps.setInt(2, C.getId_cover());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			ps.execute();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			ps.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void aggiungi_ascolto_cover(Cover C, Utente U) {
+
+		PreparedStatement ps = null;
+		String query = null;
+		
+		int rand = (int) (Math.random() * 4);
+		
+		if (rand == 0)
+			query = "INSERT INTO ascolto_cover(id_utente, id_cover, num_ascolti, fascia_oraria) VALUES (?, ?, 1, '00:00 - 06:00')";
+		if (rand == 1)
+			query = "INSERT INTO ascolto_cover(id_utente, id_cover, num_ascolti, fascia_oraria) VALUES (?, ?, 1, '06:00 - 12:00')";
+		if (rand == 2)
+			query = "INSERT INTO ascolto_cover(id_utente, id_cover, num_ascolti, fascia_oraria) VALUES (?, ?, 1, '12:00 - 18:00')";
+		if (rand == 3)
+			query = "INSERT INTO ascolto_cover(id_utente, id_cover, num_ascolti, fascia_oraria) VALUES (?, ?, 1, '18:00 - 00:00')";
+
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, U.getUser_id());
+			ps.setInt(2, C.getId_cover());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			ps.execute();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			ps.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean checkListeningCover(Cover C, Utente U) {
+		
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery("select * from ascolto_cover where id_cover = '" + C.getId_cover() + "' AND id_utente = '" + U.getUser_id() + "' ");
+			if (rs.next()) return true;
+			else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
 	public void riempiAscoltiCover(JTable tabella, Utente U) {
 		
 		String query = "SELECT cover.nome, ascolto_cover.num_ascolti AS Numero_di_ascolti\r\n"

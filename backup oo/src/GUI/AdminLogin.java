@@ -74,6 +74,11 @@ public class AdminLogin extends JFrame {
 				passwordLoginAdmin = adminpassword_field.getText();
 				Utente U = controller.userData();
 				
+				if (nomeLoginAdmin.length() == 0 || passwordLoginAdmin.length() == 0) {
+					JOptionPane.showMessageDialog(null, "Attenzione, bisogna riempire tutti i campi!");
+					return;
+				}
+				
 				if (U == null) {
 					JOptionPane.showMessageDialog(null, "Errore. Credenziali sbagliate!");
 					adminusername_field.setText("");

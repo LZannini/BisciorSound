@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -75,9 +76,12 @@ public class UtentiPiuAscoltiTracce extends JFrame {
 		button_cover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				UtentiPiuAscoltiCover utentiPiuAscoltiCover = new UtentiPiuAscoltiCover(c, frameChiamante);
-				utentiPiuAscoltiCover.setVisible(true);
-				dispose();
+				if (controller.controllaEsistenzaCover(tracciaInserita)) {
+					UtentiPiuAscoltiCover utentiPiuAscoltiCover = new UtentiPiuAscoltiCover(c, frameChiamante);
+					utentiPiuAscoltiCover.setVisible(true);
+					dispose();
+				}
+				else JOptionPane.showMessageDialog(null, "Attenzione. Non e' presente una cover di ''" + tracciaInserita + "'' nella libreria musicale!");
 			}
 		});
 		button_cover.setBounds(296, 232, 128, 21);

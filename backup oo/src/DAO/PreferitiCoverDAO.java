@@ -12,5 +12,4 @@ public interface PreferitiCoverDAO {
 	void aggiungi_preferito_cover(Cover C, Utente U);
 
 	void rimuovi_preferito_cover(Cover C, Utente U);
-
 }

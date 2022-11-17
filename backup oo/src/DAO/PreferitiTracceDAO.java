@@ -10,5 +10,4 @@ public interface PreferitiTracceDAO {
 	void aggiungi_preferito(Traccia T, Utente U);
 
 	void rimuovi_preferito(Traccia T, Utente U);
-
 }

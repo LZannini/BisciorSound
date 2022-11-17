@@ -73,6 +73,10 @@ public class PaginaIniziale extends JFrame {
 				nomeLogin = username_textField.getText();
 				passwordLogin = password_textField.getText();
 				Utente U = controller.userData();
+				if (nomeLogin.length() == 0 || passwordLogin.length() == 0) {
+					JOptionPane.showMessageDialog(null, "Attenzione, bisogna riempire tutti i campi!");
+					return;
+				}
 				if (U == null) {
 					JOptionPane.showMessageDialog(null, "Errore. Credenziali sbagliate!");
 					username_textField.setText("");

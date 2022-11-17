@@ -9,4 +9,6 @@ public interface CoverDAO {
 	JList mostra_cover(JList lista);
 	
 	public Cover coverSelezionata(String nome_cover);
+	
+	public boolean hasCover(String nome_traccia);
 }

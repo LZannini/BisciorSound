@@ -86,15 +86,14 @@ public class Registrazione extends JFrame {
 				}
 				else if (cpassword_rg.equals(password_rg)) {
 					controller.registraUtente();
-					if (password_rg.length() > 5) {
+					if (password_rg.length() > 5 && utente_rg.length() > 3) {
 						JOptionPane.showMessageDialog(null, "L'utente '"+utente_rg+"' è stato registrato!");
 						dispose();
 					}
 					else {
 						passwordRG_field.setText("");
 						CpasswordRG_field.setText("");
-					}
-					
+					}					
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Errore. Le password non coincidono!");

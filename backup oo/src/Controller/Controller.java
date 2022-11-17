@@ -24,6 +24,36 @@ public class Controller {
 
 	}
 	
+	public boolean controllaAscoltoCover(Cover C, Utente U) {
+		AscoltoCoverDAO AC_DAO = new AscoltoCoverImplementazionePG_DAO();
+		return AC_DAO.checkListeningCover(C, U); 
+	}
+	
+	public boolean controllaAscoltoTraccia(Traccia T, Utente U) {
+		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
+		return AT_DAO.checkListeningTraccia(T, U);
+	}
+	
+	public void aggiornaAscoltoCover(Cover C, Utente U) {
+		AscoltoCoverDAO AC_DAO = new AscoltoCoverImplementazionePG_DAO();
+		AC_DAO.aggiorna_ascolto_cover(C, U);
+	}
+	
+	public void aggiornaAscoltoTraccia(Traccia T, Utente U) {
+		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
+		AT_DAO.aggiorna_ascolto_traccia(T, U);
+	}
+	
+	public void aggiungiAscoltoCover(Cover C, Utente U) {
+		AscoltoCoverDAO AC_DAO = new AscoltoCoverImplementazionePG_DAO();
+		AC_DAO.aggiungi_ascolto_cover(C, U);
+	}
+	
+	public void aggiungiAscoltoTraccia(Traccia T, Utente U) {
+		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
+		AT_DAO.aggiungi_ascolto_traccia(T, U);
+	}
+	
 	public void mostraFasceOrariePiuAscolti(JTable tabella1, JTable tabella2, String nome_utente) {
 		AscoltoCoverDAO AC_DAO = new AscoltoCoverImplementazionePG_DAO();
 		AscoltoTracciaDAO AT_DAO = new AscoltoTracciaImplementazionePG_DAO();
@@ -59,6 +89,11 @@ public class Controller {
 	public Traccia trackData(String nome_traccia) {
 		TracciaDAO T_DAO = new TracciaImplementazionePG_DAO();
 		return T_DAO.tracciaSelezionata(nome_traccia);
+	}
+	
+	public boolean controllaEsistenzaCover(String nome_traccia) {
+		CoverDAO C_DAO = new CoverImplementazionePG_DAO();
+		return C_DAO.hasCover(nome_traccia);
 	}
 	
 	public Cover coverData(String nome_cover) {

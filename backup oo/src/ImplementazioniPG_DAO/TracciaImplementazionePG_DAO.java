@@ -81,30 +81,6 @@ public class TracciaImplementazionePG_DAO implements TracciaDAO {
 		}
 		return lista;
 	}
-
-	public String[] sfogliaTracce() {
-
-		String[] t = new String[128];
-		int i, j;
-
-		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select nome from traccia");
-			for (i = 0; rs.next(); i++) {
-				t[i] = rs.getString("nome");
-			}
-			String[] tmp = new String[i];
-			for (j = 0; j < i; j++) {
-				tmp[j] = t[j];
-			}
-			rs.close();
-			st.close();
-			return tmp;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 	
 	public Traccia tracciaSelezionata(String nome_traccia) {
 

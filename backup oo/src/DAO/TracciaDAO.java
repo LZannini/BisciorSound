@@ -8,7 +8,5 @@ public interface TracciaDAO {
 
 	JList mostra_tracce(JList lista);
 
-	String[] sfogliaTracce();
-
 	public Traccia tracciaSelezionata(String nome_traccia);
 }

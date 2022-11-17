@@ -105,10 +105,34 @@ public class ListaTracce extends JFrame {
 				}
 			}
 		});
-		btnPreferiti.setBounds(335, 50, 89, 49);
+		btnPreferiti.setBounds(335, 50, 90, 49);
 		contentPane.add(btnPreferiti);
-
+		
+		JButton btnAscolto = new JButton("");
+		btnAscolto.setIcon(new ImageIcon(ListaTracce.class.getResource("/immagini/icona_play.png")));
+		btnAscolto.setBackground(new Color(255, 204, 0));
+		btnAscolto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				scelta = (String) listaTracce.getSelectedValue();
+				if (scelta == null)
+					JOptionPane.showMessageDialog(null, "Errore. Nessuna traccia scelta!");
+				else {
+					if (controller.controllaAscoltoTraccia(controller.trackData(scelta), controller.userData())) 
+						controller.aggiornaAscoltoTraccia(controller.trackData(scelta), controller.userData());
+					else
+						controller.aggiungiAscoltoTraccia(controller.trackData(scelta), controller.userData());
+					
+					JOptionPane.showMessageDialog(null, "La traccia '" + scelta +  "'e' stata ascoltata!");
+				}
+			}
+		});
+		btnAscolto.setBounds(357, 140, 45, 45);
+		contentPane.add(btnAscolto);
+		
 		JLabel imgBG_label = new JLabel("");
+		imgBG_label.addMouseListener(new MouseAdapter() {
+		});
 		imgBG_label.setIcon(new ImageIcon(HomeUtente.class.getResource("/immagini/icona_bg.png")));
 		imgBG_label.setBounds(0, 0, 486, 261);
 		contentPane.add(imgBG_label);

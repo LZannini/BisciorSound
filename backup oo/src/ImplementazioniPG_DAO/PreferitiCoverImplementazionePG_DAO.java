@@ -86,11 +86,12 @@ public class PreferitiCoverImplementazionePG_DAO implements PreferitiCoverDAO {
 
 		PreparedStatement ps = null;
 
-		String query = "INSERT INTO preferiti_cover(id_utente, id_cover) SELECT user_id, id_cover from utente, cover where cover.nome = '"
-				+ C.getNome() + "' and utente.username = '" + U.getUsername() + "'";
+		String query = "INSERT INTO preferiti_cover(id_utente, id_cover) VALUES (?, ?);";
 
 		try {
 			ps = conn.prepareStatement(query);
+			ps.setInt(1, U.getUser_id());
+			ps.setInt(2, C.getId_cover());
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

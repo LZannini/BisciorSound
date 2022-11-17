@@ -74,6 +74,21 @@ public class CoverImplementazionePG_DAO implements CoverDAO {
 		return lista;
 	}
 	
+	public boolean hasCover(String nome_traccia) {
+		
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery("select * from cover where cover.nome LIKE '%" + nome_traccia + "%'");
+			if (rs.next()) return true;
+			else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	
 	public Cover coverSelezionata(String nome_cover) {
 
 		Cover C = null;

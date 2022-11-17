@@ -82,18 +82,19 @@ public class PreferitiTracciaImplementazionePG_DAO implements PreferitiTracceDAO
 
 		PreparedStatement ps = null;
 
-		String query = "INSERT INTO preferiti_traccia(id_utente, id_traccia) SELECT user_id, id_track from utente, traccia where traccia.nome = '"
-				+ T.getNome() + "' and utente.username = '" + U.getUsername() + "' ";
+		String query = "INSERT INTO preferiti_traccia(id_utente, id_traccia) VALUES (?, ?);";
 
 		try {
 			ps = conn.prepareStatement(query);
+			ps.setInt(1, U.getUser_id());
+			ps.setInt(2, T.getId_track());
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 		try {
-			ps.execute();
+			ps.execute();	
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
