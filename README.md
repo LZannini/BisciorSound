@@ -3,6 +3,7 @@
 TRACCIA 1: SISTEMA DI GESTIONE LIBRERIA MUSICALE DI UN GRUPPO DI UTENTI
 
 **- Loris Zannini N86003744 / l.zannini@studenti.unina.it**
+
 **- Vincenzo Meloni N86003897 / v.meloni@studenti.unina.it**
 
 
