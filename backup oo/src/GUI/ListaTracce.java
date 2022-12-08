@@ -94,7 +94,9 @@ public class ListaTracce extends JFrame {
 		button_cover.setBounds(296, 232, 128, 21);
 		contentPane.add(button_cover);
 
-		JButton btnPreferiti = new JButton("<html>Aggiungi ai<br />Preferiti</html>");
+		JButton btnPreferiti = new JButton("");
+		btnPreferiti.setBackground(new Color(255, 204, 0));
+		btnPreferiti.setIcon(new ImageIcon(ListaTracce.class.getResource("/immagini/icona_preferiti.png")));
 		btnPreferiti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -107,7 +109,7 @@ public class ListaTracce extends JFrame {
 				}
 			}
 		});
-		btnPreferiti.setBounds(335, 50, 90, 49);
+		btnPreferiti.setBounds(357, 50, 45, 45);
 		contentPane.add(btnPreferiti);
 		
 		JButton btnAscolto = new JButton("");

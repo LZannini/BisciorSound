@@ -95,7 +95,9 @@ public class ListaCover extends JFrame {
 		button_tracce.setBounds(296, 231, 128, 21);
 		contentPane.add(button_tracce);
 
-		JButton btnPreferiti = new JButton("<html>Aggiungi ai<br />Preferiti</html>");
+		JButton btnPreferiti = new JButton("");
+		btnPreferiti.setBackground(new Color(255, 204, 0));
+		btnPreferiti.setIcon(new ImageIcon(ListaCover.class.getResource("/immagini/icona_preferiti.png")));
 		btnPreferiti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -108,7 +110,7 @@ public class ListaCover extends JFrame {
 				}
 			}
 		});
-		btnPreferiti.setBounds(335, 50, 90, 49);
+		btnPreferiti.setBounds(357, 50, 45, 45);
 		contentPane.add(btnPreferiti);
 		
 		JButton btnAscolto = new JButton("");
