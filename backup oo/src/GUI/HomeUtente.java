@@ -73,7 +73,7 @@ public class HomeUtente extends JFrame {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TabellaAscoltiTracce ascolti_frame = new TabellaAscoltiTracce(controller, frameChiamante);
+				AscoltoTracce ascolti_frame = new AscoltoTracce(controller, frameChiamante);
 				ascolti_frame.setVisible(true);
 				dispose();
 			}
