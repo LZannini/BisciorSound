@@ -1,4 +1,5 @@
 TRACCIA 1: SISTEMA DI GESTIONE LIBRERIA MUSICALE DI UN GRUPPO DI UTENTI
+
 Si sviluppi un sistema informativo, composto da una base di dati relazionale e da un applicativo Java dotato
 di GUI (Swing o JavaFX), per la gestione delle librerie musicali di un gruppo di utenti. Il sistema permette di
 gestire le tracce, gli ascolti delle singole tracce e le liste dei brani preferiti dei singoli utenti. Di ogni traccia si
