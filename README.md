@@ -1,4 +1,5 @@
 ![BisciorSound](https://i.ibb.co/F77m2ZD/Biscior-Sound.png")
+
 TRACCIA 1: SISTEMA DI GESTIONE LIBRERIA MUSICALE DI UN GRUPPO DI UTENTI
 
 **- Loris Zannini N86003744 / l.zannini@studenti.unina.it**
