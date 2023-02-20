@@ -1,1 +1,29 @@
-SELECT * FROM UTENTE;
+CREAZIONE TABELLE
+
+```SQL
+CREATE TABLE INSEGNANTE(
+USERNAME_I VARCHAR(25) NOT NULL,
+PASSWORD_I VARCHAR(25) NOT NULL,
+NOME VARCHAR(25),
+COGNOME VARCHAR(25),
+PRIMARY KEY (USERNAME_I)
+);
+```
+Tabella contenente varie stringhe di 25 caratteri.
+
+--------------------------------------------------------------------------------------------
+
+```SQL
+CREATE TABLE STUDENTE(
+	USERNAME_S VARCHAR(25) NOT NULL,
+	PASSWORD_S VARCHAR(25) NOT NULL,
+	NOME VARCHAR(25),
+	COGNOME VARCHAR(25),
+	PUNTEGGIO_TOT FLOAT DEFAULT 0,
+PRIMARY KEY (USERNAME_S)
+);
+```
+
+Tabella contenente varie stringhe di 25 caratteri (scelta una grandezza fittizia) e un float
+
+--------------------------------------------------------------------------------------------
