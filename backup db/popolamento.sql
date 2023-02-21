@@ -232,11 +232,244 @@ CREATE TABLE IF NOT EXISTS public.ascolto_cover
 
 
 
+--
+-- TRIGGER CONTROLLO LUNGHEZZA PASSWORD
+--
+
+-- La seguente funzione controlla, durante la registrazione di un nuovo utente nel sistema, che la password inserita 
+-- in fase di sign up abbia una lunghezza di almeno sei caratteri, altrimenti verrà sollevata una eccezione.
+
+
+CREATE OR REPLACE FUNCTION public.controllo_lunghezzapassword()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE
+    pass_word utente.password%type;
+BEGIN
+	SELECT utente.password INTO pass_word
+	FROM utente
+	WHERE utente.password = NEW.password;
+
+	IF(LENGTH(pass_word) < 6) THEN
+	RAISE EXCEPTION 'La password deve contenere almeno 6 caratteri!'
+		USING HINT = 'Inserisci una password più lunga.';
+	END IF;
+RETURN NULL;
+END;
+
+$BODY$;
 
 
 
+--
+-- TRIGGER CONTROLLO SICUREZZA PASSWORD
+--
+
+-- La seguente funzione controlla, durante la registrazione di un nuovo utente nel sistema, che la password inserita 
+-- in fase di sign non sia troppo banale: verrà sollevata una eccezione nel momento in cui l'utente inserisce come
+-- password le stringhe "123456", "12345678" o "000000".
 
 
+
+CREATE OR REPLACE FUNCTION public.controllo_sicurezzapassword()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE
+    pass_word utente.password%type;
+BEGIN
+	SELECT utente.password INTO pass_word
+	FROM utente
+	WHERE utente.password = NEW.password;
+
+	IF(pass_word = '123456' OR pass_word = '12345678' OR pass_word = '000000' OR pass_word = 'password') THEN
+	RAISE EXCEPTION 'La password inserita ha un livello di sicurezza troppo basso!'
+		USING HINT = 'Inserisci una password più sicura.';
+	END IF;
+RETURN NULL;
+END;
+
+$BODY$;
+
+
+
+--
+-- TRIGGER CONTROLLO PREFERITI COVER
+--
+
+-- La seguente funzione si attiva in fase di aggiunta di una cover alla lista dei preferiti. Verrà scatenata una
+-- eccezione nel momento in cui si aggiunge una cover che era già presente tra i preferiti.
+
+
+
+CREATE OR REPLACE FUNCTION public.controllo_preferiti_cover()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE 
+
+BEGIN
+
+IF EXISTS(
+    SELECT *
+    FROM preferiti_cover AS p1, preferiti_cover AS p2
+    WHERE p1.id_utente = p2.id_utente AND p1.id_cover = p2.id_cover AND p1.id_preferito <> p2.id_preferito
+)THEN
+RAISE EXCEPTION 'La cover è già presente nei preferiti!';
+END IF;
+
+RETURN NULL;
+END;
+
+$BODY$;
+
+
+
+--
+-- TRIGGER CONTROLLO PREFERITI TRACCIA
+--
+
+-- La seguente funzione si attiva in fase di aggiunta di una traccia alla lista dei preferiti. Verrà scatenata una
+-- eccezione nel momento in cui si aggiunge una traccia che era già presente tra i preferiti.
+
+
+
+CREATE OR REPLACE FUNCTION public.controllo_preferiti_traccia()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE 
+
+BEGIN
+
+IF EXISTS(
+    SELECT *
+    FROM preferiti_traccia AS p1, preferiti_traccia AS p2
+    WHERE p1.id_utente = p2.id_utente AND p1.id_traccia = p2.id_traccia and p1.id_preferito <> p2.id_preferito
+)THEN
+RAISE EXCEPTION 'La traccia è già presente nei preferiti!';
+END IF;
+
+RETURN NULL;
+END;
+
+$BODY$;
+
+
+
+--
+-- TRIGGER CONTROLLO USERNAME
+--
+
+-- La seguente funzione controlla, durante la registrazione di un nuovo utente nel sistema, che il nome utente inserito 
+-- in fase di sign up abbia una lunghezza di almeno quattro caratteri, altrimenti verrà sollevata una eccezione.
+
+
+
+CREATE OR REPLACE FUNCTION public.controllo_username()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE
+    user_name utente.username%type;
+BEGIN
+	SELECT utente.username INTO user_name
+	FROM utente
+	WHERE utente.username = NEW.username;
+
+	IF(LENGTH(user_name) < 4) THEN
+	RAISE EXCEPTION 'Il nome utente deve contenere almeno 4 caratteri!'
+		USING HINT = 'Inserisci un nome utente più lungo.';
+	END IF;
+RETURN NULL;
+END;
+
+$BODY$;
+
+
+
+--
+-- TRIGGER CONTROLLO ANNO TRACCIA E ALBUM
+--
+
+-- La seguente funzione si attiva quando si aggiunge una nuova traccia nel sistema. Verrà sollevata una eccezione
+-- nel momento in cui la traccia aggiunta ha un anno di nascita successivo a quello del suo album di appartenenza.
+
+
+
+CREATE OR REPLACE FUNCTION public.controllo_anno_albumtraccia()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE
+    annoA album.anno_uscita%TYPE;
+    annoT traccia.versione%TYPE;
+BEGIN
+    SELECT Traccia.versione  INTO annoT
+    FROM Traccia
+    WHERE Traccia.nome = NEW.nome;
+    
+    SELECT album.annouscita INTO annoA
+    FROM album
+    WHERE album.nome = NEW.album;
+    
+    IF(annoT > annoA) THEN
+	RAISE EXCEPTION 'L''anno della traccia non può essere maggiore all''anno di uscita dell''album di appartenenza!';
+	END IF;
+RETURN NULL;
+END;
+
+$BODY$;
+
+
+
+--
+-- TRIGGER CONTROLLO AUTORE COVER
+--
+
+-- La seguente funzione si attiva quando si aggiunge una nuova cover nel sistema. Verrà sollevata  
+-- una eccezione nel momento in cui la cover aggiunta ha lo stesso artista della traccia originale.
+
+
+
+CREATE OR REPLACE FUNCTION public.controllo_autorecover()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE
+    autoreC cover.autore%TYPE;
+    autoreT traccia.autore%TYPE;
+BEGIN
+    SELECT cover.autore  INTO autoreC
+    FROM Cover
+    WHERE Cover.nome = NEW.nome;
+    
+    SELECT traccia.autore INTO autoreT
+    FROM Traccia
+    WHERE Traccia.nome LIKE '%NEW.nome%';
+    
+    IF(autoreC = autoreT) THEN
+	RAISE EXCEPTION 'L''autore della cover deve essere diverso dall''autore della traccia!';
+	END IF;
+RETURN NULL;
+END;
+
+$BODY$;
 
 
 
