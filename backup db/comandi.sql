@@ -471,22 +471,141 @@ END;
 
 $BODY$;
 
-
+-- ////////// POPOLAMENTO TABELLE CON DATI DI ESEMPIO //////////
 
 --
 -- POPOLAMENTO TABELLA UTENTE
 --
 
 
+INSERT INTO UTENTE("user_id","username","password","admin")
+VALUES(1,"lollo01","informatica",True),
+(2,"fNapoli26","SSCNapoli",False),
+(3,"mario_","mm2000",False),
+(4,"xskript","Musica1",False),
+(5,"VincyM","database",True),
+(6,"Filippo91","albero",False),
+(7,"Mela57","frutta100",False),
+(8,"LoreZZ","321progetto",False),
+(9,"shadowblast01","pass777",False),
+(10,"LorisZ","5G2001",False);
 
 
 
+--
+-- POPOLAMENTO TABELLA TRACCIA
+--
+
+
+INSERT INTO TRACCIA("id_track","autore","versione","nome","album")
+VALUES (1,"Green Day",2004,"Boulevard of Broken Dreams","American Idiot"),
+(2,"Linkin Park",2000,"In The End","Hybrid Theory"),
+(3,"Nino D Angelo",1982,"O studente","Nu jeans e na maglietta"),
+(4,"Green Day",2004,"American Idiot","American Idiot"),
+(5,"Eminem",2010,"Going Through Changes","Recovery"),
+(6,"Green Day",2009,"Know Your Enemy","21st Century Breakdown"),
+(7,"Articolo 31",2002,"Non è un film","Domani Smetto"),
+(8,"Eminem",2010,"Not Afraid","Recovery"),
+(9,"Green Day",2009,"21 Guns","21st Century Breakdown"),
+(10,"Articolo 31",2002,"Gente che spera","Domani Smetto");
 
 
 
+--
+-- POPOLAMENTO TABELLA ALBUM
+--
+
+
+INSERT INTO ALBUM("nome_album","artista","anno_uscita")
+VALUES ("21st Century Breakdown","Green Day",2009),
+("A verità","Rocco Hunt",2014),
+("A verità 2.0","Rocco Hunt",2015),
+("American Idiot","Green Day",2004),
+("Bangarang","Skrillex",2011),
+("Covered",NULL,2021),
+("Covers vol.1",NULL,2020),
+("Domani Smetto","Articolo 31",2002),
+("Hybrid Theory","Linkin Park",2000),
+("Lace Up","Machine Gun Kelly",2012);
 
 
 
+--
+-- POPOLAMENTO TABELLA COVER
+--
+
+
+INSERT INTO COVER ("autore","anno_nascita","anno_rivisitazione","nome","album","id_cover","traccia_originale")
+VALUES ("Tommee Profitt",2000,2020,"In The End (Mellen Gi)","Covers vol.1",2,2),
+("Sparsh Shah",2010,2016,"Not Afraid (Cover by Sparsh)","Covered",3,8),
+("Fracionado",2004,2011,"American Idiot (Drum Cover)","Covered",5,4);
+
+
+
+--
+-- POPOLAMENTO TABELLA PREFERITI_TRACCIA
+--
+
+
+INSERT INTO PREFERITI_TRACCIA ("id_utente","id_traccia","id_preferito")
+VALUES (1,5,1),
+(1,8,2),
+(2,3,3),
+(3,7,4),
+(4,1,5),
+(4,2,6),
+(4,4,7),
+(5,5,8),
+(7,6,9),
+(9,6,10);
+
+
+
+--
+-- POPOLAMENTO TABELLA PREFERITI_COVER
+--
+
+
+INSERT INTO PREFERITI_COVER ("id_utente","id_cover","id_preferito")
+VALUES  (1,2,1),
+(1,3,2),
+(2,2,4),
+(2,3,5),
+(3,3,7);
+
+
+
+--
+-- POPOLAMENTO ASCOLTO_TRACCIA
+--
+
+
+INSERT INTO ASCOLTO_TRACCIA  ("id_ascolto","id_utente","id_traccia","num_ascolti","fascia_oraria")
+VALUES (1,1,1,20,"00:00 - 06:00"),
+(2,1,1,11,"18:00 - 00:00"),
+(3,1,5,10,"12:00 - 18:00"),
+(4,1,10,22,"18:00 - 00:00"),
+(5,2,7,21,"18:00 - 00:00"),
+(6,4,4,13,"06:00 - 12:00"),
+(7,5,9,18,"06:00 - 12:00"),
+(8,6,8,15,"00:00 - 06:00"),
+(9,8,2,12,"12:00 - 18:00"),
+(10,9,3,13,"12:00 - 18:00");
+
+
+
+--
+-- POPOLAMENTO ASCOLTO_COVER
+--
+
+
+INSERT INTO ASCOLTO_COVER ("id_ascoltoc","id_utente","id_cover","num_ascolti","fascia_oraria")
+VALUES (1,1,5,9,"18:00 - 00:00"),
+(2,2,3,15,"00:00 - 06:00"),
+(3,3,2,16,"12:00 - 18:00"),
+(4,6,2,10,"18:00 - 00:00"),
+(5,7,3,17,"06:00 - 12:00"),
+(6,9,5,11,"12:00 - 18:00");
 
 
 
