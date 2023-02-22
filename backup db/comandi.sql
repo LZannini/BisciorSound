@@ -1,6 +1,6 @@
 
 --
--- Per aggiungere il DB basta creare un nuovo database su pgAdmin ed usare il comando "Restore" con il file "BisciorSound.sql".
+-- Per aggiungere il DB basta creare un nuovo database su pgAdmin ed usare il comando "Restore" selezionando il file "BisciorSound.sql".
 --
 
 --
